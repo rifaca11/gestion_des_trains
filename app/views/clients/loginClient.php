@@ -6,11 +6,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Login</title>
-    <link rel="stylesheet" href="assets/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="/assets/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="/assets/css/styles.css">
 
 </head>
 
+<!-- start error for search -->
+
+<?php  if(isset($error) && !empty($error)){ ?>
+
+<?php if(!strcmp($error,"Enter your informations")){ ?>
+
+   <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <?php echo $error; ?>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+   </div>
+
+<?php  }elseif(!strcmp($error,"your mail or password is invalid")){   ?>
+
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+     <?php echo $error; ?>
+     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+   </div>
+
+<?php  }  ?>
+
+
+<?php  } ?>
     <main class="page-auth">
         <div class="container">
             <div class="row">
@@ -20,7 +42,7 @@
                             <div class="col-md-6 mb-4 mb-md-0">
                                 <h2 class="auth-section-title">Log In</h2>
                                 <p class="auth-section-subtitle">Sign in to your account to continue.</p>
-                                <form action="/Clients" method="POST">
+                                <form action="/Login" method="POST">
                                     <div class="form-group">
                                         <label for="email">Email <sup>*</sup></label>
                                         <input type="email" class="form-control" id="email" name="email" placeholder="Email *">

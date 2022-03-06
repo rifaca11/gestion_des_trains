@@ -8,19 +8,36 @@
                             <div class="col-md-6 mb-4 mb-md-0">
                                 <h2 class="auth-section-title">Create account</h2>
                                 <p class="auth-section-subtitle">Create your account to continue.</p>
-                                <form action="/login.html" method="POST">
+                                <form action="/Login/register" method="POST">
+                                    <div class="form-group">
+                                        <label for="firstname">First Name <sup>*</sup></label>
+                                        <input type="text" class="form-control" id="firstname" name="firstname" placeholder="First Name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="laststname">Last Name <sup>*</sup></label>
+                                        <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Last Name">
+                                    </div>
                                     <div class="form-group">
                                         <label for="email">Email <sup>*</sup></label>
                                         <input type="email" class="form-control" id="email" name="email" placeholder="Email">
                                     </div>
                                     <div class="form-group">
+                                        <label for="firstname">Tele <sup>*</sup></label>
+                                        <input type="number" class="form-control" id="tele" name="tele" placeholder="Tele">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="city">City <sup>*</sup></label>
+                                        <input type="text" class="form-control" id="city" name="city" placeholder="City">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="dateN">Date Naissance <sup>*</sup></label>
+                                        <input type="date" class="form-control" id="dateN" name="dateN" placeholder="DateN">
+                                    </div>
+                                    <div class="form-group">
                                         <label for="password">Password <sup>*</sup></label>
                                         <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                                     </div>
-                                    <div class="form-group">
-                                        <label for="confirmPassword">Confirm Password <sup>*</sup></label>
-                                        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password">
-                                    </div>
+                                   
                                     <button class="btn btn-primary btn-auth-submit" type="submit">Create account</button>
                                 </form>
                                 <p class="mb-0">

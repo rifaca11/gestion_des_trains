@@ -21,7 +21,7 @@
                             <div class="col-md-6 mb-4 mb-md-0">
                                 <h2 class="auth-section-title">Log In</h2>
                                 <p class="auth-section-subtitle">Sign in to your account to continue.</p>
-                                <form action="" method="POST">
+                                <form action="/Login/loginAdmin/" method="POST">
                                     <div class="form-group">
                                         <label for="email">Email <sup>*</sup></label>
                                         <input type="email" class="form-control" id="email" name="email" placeholder="Email *">

@@ -5,7 +5,7 @@
         <div class="container" data-aos="fade-up">
             <div class="row">
     			<div class="col-md-8 offset-md-2 text-center">
-    				<h2 class="text-light my-5"> <b>Book A Table</b></h2>
+    				<h2 class="text-light my-5"> <b>List of your booking</b></h2>
     			</div>
     		</div>
 
@@ -26,16 +26,16 @@
                 </thead>
                 <tbody>
                 <?php $i=1; ?>
-            <?php foreach($tripsG as $rowG) {?>
+            <?php foreach($tripsR as $rowR) {?>
 
 
                 <tr>
-                <td> <?php echo $rowG['gareD']; ?> </td>
+                <td> <?php echo $rowR['gareD']; ?> </td>
               
-                <td> <?php echo $rowG['gareA']; ?> </td>
-                <td> <?php echo $rowG['price']; ?> </td>
+                <td> <?php echo $rowR['gareA']; ?> </td>
+                <td> <?php echo $rowR['price']; ?> </td>
                 <td>
-                <a href="" name="reserve" class="edit" title="Reserve" data-toggle="modal" data-target="<?php echo '#reserve'.$rowG['idT'] ?>"  data-whatever="@mdo"><button class="btn-light p-1"> Reserve</button></a>
+                <a href="" name="reserve" class="edit" title="Reserve" data-toggle="modal" data-target="<?php echo '#reserve'.$rowR['idT'] ?>"  data-whatever="@mdo"><button class="btn-light p-1"> Annuler</button></a>
                 </td>
            
             
@@ -44,7 +44,7 @@
                 
 <!-- start update trip -->
 
-<div class="modal fade" id="<?php echo 'reserve'.$rowG['idT'] ?>" tabindex="-1" aria-labelledby="reserve" aria-hidden="true">
+<div class="modal fade" id="<?php echo 'reserve'.$rowR['idT'] ?>" tabindex="-1" aria-labelledby="reserve" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header text-light" style="background-color:rgb(146, 25, 120)">
@@ -54,7 +54,7 @@
                 </button>
             </div>
             <div class="modal-body text-dark bg-light">
-            <form action="<?php echo '/Clients/bookingUs/'.$rowG['idT'] ?>" method="POST">
+            <form action="<?php echo '/Clients/bookingUs/'.$rowR['idT'] ?>" method="POST">
 
                 <div class="form-group">
                 <label for="exampledateD">Date depart</label>

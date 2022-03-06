@@ -29,6 +29,23 @@ public function GetTrain()
 
 }
 
+// for booking 
+
+public function GetGare()
+{
+   $sql = "SELECT idT, gareD ,gareA, price from trips";
+   $stmt = $this->connect()->prepare($sql);
+   if($stmt->execute())
+   {
+     return $stmt->fetchAll();
+   }
+   else return 0;
+
+}
+
+
+
+
 
 // -- VALUES ('$add['reference']','$add['nom']','$add['descriptions']','$add['prix']','$add['quantite']','$add['categorie']')";
 
@@ -72,10 +89,10 @@ public function GetTrain()
 
 public function UpdateTrips($update)
 {
-  $sql = "UPDATE trips SET gareD=?,gareA=?,dateD=?, dateA=?, price=?, idTr=? WHERE idT=?";
+  $sql = "UPDATE trips SET gareD=?,gareA=?,dateD=?, dateA=?, price=?, states=?, idTr=? WHERE idT=?";
     // use exec() because no results are returned
     $stmt = $this->connect()->prepare($sql);
-   if($stmt->execute(array($update['gareD'],$update['gareA'],$update['dateD'],$update['dateA'],$update['price'],$update['idTr'],$update['idT']))) 
+   if($stmt->execute(array($update['gareD'],$update['gareA'],$update['dateD'],$update['dateA'],$update['price'],$update['states'],$update['idTr'],$update['idT']))) 
    {
        echo "updated successfully";
    }
@@ -125,35 +142,54 @@ public function GetReservation()
 }
 
 
-
-
-
-public function CancelTrips($update)
+public function AddReservation($idT,$idP)
 {
-  $sql = "UPDATE trips SET states = 'invalid' WHERE idT=?";
-    // use exec() because no results are returned
-    $stmt = $this->connect()->prepare($sql);
-   if($stmt->execute(array($update['idT']))) 
-   {
-       echo "Canceled successfully";
-   }
-   else
-   {
-     return 0;
-   }
-  
-  }
+  $sql = "INSERT INTO reservation (idT,idP)
+  VALUES ($idT,$idP)";
+  // use exec() because no results are returned
+  $stmt = $this->connect()->prepare($sql);
+if($stmt->execute()) 
+{
+    echo "New record created successfully";
+}
+else
+{
+  return 0;
+}
 
-  public function GetTripsToCancel($id)
-  {
-      $sql = "SELECT states FROM trips WHERE states='valid' idT=$id";
-     $stmt = $this->connect()->prepare($sql);
-     if($stmt->execute())
-     {
-       return $stmt->fetch();
-     }
-     else return 0;
- }
+}
+
+
+
+
+
+
+// public function CancelTrips($update)
+// {
+//   $sql = "UPDATE trips SET states = 'invalid' WHERE idT=?";
+//     // use exec() because no results are returned
+//     $stmt = $this->connect()->prepare($sql);
+//    if($stmt->execute(array($update['idT']))) 
+//    {
+//        echo "Canceled successfully";
+//    }
+//    else
+//    {
+//      return 0;
+//    }
+  
+//   }
+
+//   public function GetTripsToCancel($id)
+//   {
+//       $sql = "SELECT states FROM trips WHERE states='valid' idT=$id";
+//      $stmt = $this->connect()->prepare($sql);
+//      if($stmt->execute())
+//      {
+//        return $stmt->fetch();
+//      }
+//      else return 0;
+//  }
 
 
 

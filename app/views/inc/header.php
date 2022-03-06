@@ -93,7 +93,7 @@
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="/admin/profil"> Check Profil</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="/login">logout</a>
+                                <a class="dropdown-item" href="/admin/logout">logout</a>
                             </div>
                         </li>
                         <li class="nav-item">

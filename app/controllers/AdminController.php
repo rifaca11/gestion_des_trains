@@ -1,5 +1,7 @@
 <?php
 
+
+session_start();
 class AdminController
 {
 
@@ -22,12 +24,12 @@ class AdminController
         view::load('create',$data);
     }
 
-    public function DeleteTrips($id)
-    {
-        $db = new Trips();
-        $db->DeleteTrips($id);
-        header('location:/admin/add');
-    }
+    // public function DeleteTrips($id)
+    // {
+    //     $db = new Trips();
+    //     $db->DeleteTrips($id);
+    //     header('location:/admin/add');
+    // }
 
     public function AddTrips()
     {
@@ -69,48 +71,51 @@ class AdminController
             $update["dateD"]=$_POST["dateD"];
             $update["dateA"]=$_POST["dateA"];
             $update["price"]=$_POST["price"];
+            $update["states"]=$_POST["states"];
             $update["idTr"]=$_POST["idTr"];
             // print_r($update);
             $db->UpdateTrips($update);
             header('location:/admin/add');
-
-            // $_POST['reference']="";
         }
         else
         {
             $db = new Trips();
             $data['update'] = $db->GetTripsToUpdate($id);
-            // $data['update'] = $db->GetTrain($id);
+            $data['update'] = $db->GetTrain($id);
             view::load('/admin/add',$data);
         }
     }
 
+// public function CancelTrips($id)
+//     {
+//         $db = new Trips();
+//         $db->CancelTrips($id);
+//         header('location:/admin/add');
+//     }
 
 
-    public function CancelTrips($id)
+    // public function CancelTrips($id)
 
-    {
+    // {
 
-        if($_SERVER['REQUEST_METHOD']=='POST'){
-            $db = new Trips();
+    //     if($_SERVER['REQUEST_METHOD']=='POST'){
+    //         $db = new Trips();
+    //         $update =[];
+    //         $update["idT"]=$id;
+    //         // print_r($update);
+    //         $db->CancelTrips($update);
+    //         header('location:/admin/add');
 
-            $update =[];
-            $update["idT"]=$id;
-            $update["states"]=$_POST["states"];
-            print_r($update);
-            // $db->CancelTrips($update);
-            // header('location:/admin/add');
-
-            // $_POST['reference']="";
-        }
-        else
-        {
-            $db = new Trips();
-            // $data['update'] = $db->GetTripsToCancel($id);
-            // $data['update'] = $db->GetTrain($id);
-            // view::load('/admin/add',$data);
-        }
-    }
+    //         // $_POST['reference']="";
+    //     }
+    //     else
+    //     {
+    //         $db = new Trips();
+    //         // $data['update'] = $db->GetTripsToCancel($id);
+    //         // $data['update'] = $db->GetTrain($id);
+    //         // view::load('/admin/add',$data);
+    //     }
+    // }
 
 
 
@@ -136,7 +141,11 @@ class AdminController
     {
         view::load('adminProfile');
     }
+    public function logout()
 
+    {
+        view::load('login');
+    }
 
 
 }
