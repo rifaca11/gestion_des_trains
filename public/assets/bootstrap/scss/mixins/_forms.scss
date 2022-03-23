@@ -30,7 +30,7 @@
 // See https://github.com/sass/sass/issues/1873#issuecomment-152293725 for more details
 @mixin form-validation-state-selector($state) {
   @if ($state == "valid" or $state == "invalid") {
-    .was-validated #{if(&, "&", "")}:#{$state},
+    .was-valiHoursD #{if(&, "&", "")}:#{$state},
     #{if(&, "&", "")}.is-#{$state} {
       @content;
     }

@@ -127,8 +127,8 @@ CREATE TABLE `trips` (
   `idT` int(11) NOT NULL,
   `gareD` varchar(100) NOT NULL,
   `gareA` varchar(100) NOT NULL,
-  `dateD` datetime NOT NULL DEFAULT current_timestamp(),
-  `dateA` datetime NOT NULL DEFAULT current_timestamp(),
+  `HoursD` datetime NOT NULL DEFAULT current_timestamp(),
+  `HoursA` datetime NOT NULL DEFAULT current_timestamp(),
   `price` double NOT NULL,
   `states` enum('valid','invalid') NOT NULL DEFAULT 'valid',
   `idTr` int(11) NOT NULL
@@ -138,7 +138,7 @@ CREATE TABLE `trips` (
 -- Dumping data for table `trips`
 --
 
-INSERT INTO `trips` (`idT`, `gareD`, `gareA`, `dateD`, `dateA`, `price`, `states`, `idTr`) VALUES
+INSERT INTO `trips` (`idT`, `gareD`, `gareA`, `HoursD`, `HoursA`, `price`, `states`, `idTr`) VALUES
 (1, 'safi', 'casa', '2022-02-23 15:58:14', '2022-02-24 15:57:05', 50, 'invalid', 1),
 (2, 'fes', 'casa', '2022-02-23 15:58:42', '2022-02-25 15:57:05', 900, 'invalid', 2),
 (3, 'tanger', 'safi', '2022-02-23 17:02:00', '2022-02-24 17:02:00', 455, 'valid', 1),

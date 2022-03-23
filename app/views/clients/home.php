@@ -9,13 +9,39 @@
                     <div class="col-md-6">
                         <h1>Welcome to our website for booking train</h1>
                         <p class="text-dark p-5">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Alias unde, ipsam vero similique neque commodi. </p>
-                        <button class="btn btn-primary mb-4">Book Now</button>
+                        <a class="nav-link" href="/home/booking"><button class="btn btn-primary mb-4">Book Now</button></a>
                     </div>
                     <div class="col-md-6">
                         <img src="assets/img/app_1.svg" alt="app" width="388px" class="img-fluid">
                     </div>
                 </div>
             </div>
+
+            <div class="container">
+    <h1>Search Here</h1>
+    <br><br>
+    <!-- first -->
+    <div class="first-form">
+        <div class="first-title">
+            <!-- <span id="title">Book Your Trip Now</span> -->
+            <form class="first" action="/Clients/search/" method="POST">
+                <div class="mb-3">
+                    <label class="form-label">Depart</label>
+                    <input type="text" name="gareD" class="form-control" required >
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Arrive</label>
+                    <input type="text" name="gareA" class="form-control" required>
+                </div>
+                <button type="submit" name="submit" class="btn btn-primary btn-block mt-4 mb-3">Search</button>
+            </form>
+        </div>
+    </div>
+
+            </div>
+
+
+            <br><br> <br><br>
             <h2>Satisfied Clients</h2>
             <p class="text-muted mb-5">Thank you for your very professional and prompt response. I wished I had found you before </p>
             <div class="row">

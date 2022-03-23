@@ -29,7 +29,7 @@
                             <a class="nav-link" href="/Clients">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/Clients/bookingUs">Booking</a>
+                            <a class="nav-link" href="/Clients/bookingUs">Trips</a>
                         </li>
 
                         <li class="nav-item">
@@ -52,7 +52,7 @@
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="/Clients/UpdatePerson/"> Check Profil</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="/Login/logout/">logout</a>
+                                <a class="dropdown-item" href="/Login/logout">logout</a>
                             </div>
                         </li>
                     </ul>

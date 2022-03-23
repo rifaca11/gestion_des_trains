@@ -12,7 +12,7 @@
 
 <body>
     <div class="wrapper">
-        <nav id="sidebar">
+        <nav id="sidebar" style="height:100vh">
             <div class="fixed">
                 <div class="sidebar-header">
                     <div class="logo">
@@ -61,26 +61,7 @@
                         <i class="las la-bars"></i>
                     </button>
 
-                    <?php 
-                     $url= $_SERVER['QUERY_STRING'];
-                     if(isset($url[1]))
-                     {
-                        $url = trim($url,"/");
-                        $url = explode("/",$url);
-                     }
-                    ?>
-
-                    <?php   if(isset($url[1])){   
-                             if($url[1] ==='history' ){
-                        ?>
-                    <div class="search">
-                        <input type="search" name="" placeholder="Search" id="">
-                        <button>
-                            <i class="las la-arrow-right"></i>
-                        </button>
-                    </div>
-                    <?php   }}   ?>
-
+                   
                 </div>
 
                 <div class="admin">
@@ -91,9 +72,9 @@
                                 <i class="las la-cog"></i>
                             </a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="/admin/profil"> Check Profil</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="/admin/logout">logout</a>
+                            <a class="dropdown-item" href="/home/loginAdmin">logout</a>
+                                <!-- <div class="dropdown-divider"></div> -->
+                                <!-- <a class="dropdown-item" href="/admin/profil"> Check Profil</a> -->
                             </div>
                         </li>
                         <li class="nav-item">

@@ -1,4 +1,5 @@
 
+
 <body>
     <!-- Table Reservation Form -->
     <section id="book-a-table" class="book-a-table" style="background-color:#6f42c1">
@@ -10,7 +11,7 @@
     		</div>
 
           
-              
+
 
                 <?php  //  if(!isset($_SESSION['idPCl']) && empty($_SESSION['idPCl'])){ ?>
                 
@@ -20,6 +21,8 @@
                         
                         <th>gareD</th>						
                         <th>gareA</th>
+                        <th>HoursD</th>
+                        <th>HoursA</th>
                         <th>price</th>
                         <th>Actions</th>
                     </tr>
@@ -28,18 +31,16 @@
                 <?php $i=1; ?>
             <?php foreach($tripsG as $rowG) {?>
 
-
                 <tr>
-                <td> <?php echo $rowG['gareD']; ?> </td>
-              
+                <td> <?php echo $rowG['gareD']; ?> </td>            
                 <td> <?php echo $rowG['gareA']; ?> </td>
+                <td> <?php echo $rowG['HoursD']; ?> </td>
+                <td> <?php echo $rowG['HoursA']; ?> </td>
                 <td> <?php echo $rowG['price']; ?> </td>
                 <td>
-                <a href="" name="reserve" class="edit" title="Reserve" data-toggle="modal" data-target="<?php echo '#reserve'.$rowG['idT'] ?>"  data-whatever="@mdo"><button class="btn-light p-1"> Reserve</button></a>
+                <a href="" name="reserve" class="edit" title="Reserve" data-toggle="modal" data-target="<?php echo '#reserve'.$rowG['idT'] ?>"  data-whatever="@mdo"><button class="btn btn-primary" > Reserve</button></a>
                 </td>
            
-            
-              
 
                 
 <!-- start update trip -->
@@ -55,16 +56,13 @@
             </div>
             <div class="modal-body text-dark bg-light">
             <form action="<?php echo '/Clients/bookingUs/'.$rowG['idT'] ?>" method="POST">
-
                 <div class="form-group">
-                <label for="exampledateD">Date depart</label>
-                <input type="datetime-local" class="form-control" name="dateD" id="exampledateD">
+                <label for="exampleHoursD">Day</label>
+                <input type="date" class="form-control" name="day" id="exampleHoursD" value="<?php echo date("Y-%-%") ?>">
                 </div>
-
-               
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn text-light" style="background-color:rgb(146, 25, 120)">Reserve</button>
+                <button type="submit" class="btn text-light"  style="background-color:rgb(146, 25, 120)">Reserve</button>
             </div>
             </div>
 </form>
@@ -115,7 +113,7 @@
                 </div>
                
                 <div class="col-md-12 form-group">
-                 <input type="datetime-local" name="dateD" class="form-control">
+                 <input type="datetime-local" name="HoursD" class="form-control">
                 </div> -->
                 
 <!--         

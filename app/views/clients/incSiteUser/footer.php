@@ -45,8 +45,7 @@
         
     </footer>
     <script src="/assets/jquery/jquery.min.js"></script>
-    <script src="/assets/popper.js/popper.min.js"></script>
-    <script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>
+   <script src="/assets/popper.js/popper.min.js"></script>
+   <script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>
 </body>
-
 </html>

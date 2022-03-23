@@ -8,7 +8,13 @@ class AdminController
     public function index()
 
     {
-        view::load('main');
+        $db = new Person();
+        $tab['count'] = $db->nbrCLient();
+        $tab['countt'] = $db->nbrUser();
+        $tab['counttt'] = $db->nbrReservation();
+        $tab['countttt'] = $db->nbrTrips();
+        view::load('main',$tab);
+
     }
     
 
@@ -40,8 +46,8 @@ class AdminController
             $add =[];
             $add["gareD"]=$_POST["gareD"];
             $add["gareA"]=$_POST["gareA"];
-            $add["dateD"]=$_POST["dateD"];
-            $add["dateA"]=$_POST["dateA"];
+            $add["HoursD"]=$_POST["HoursD"];
+            $add["HoursA"]=$_POST["HoursA"];
             $add["price"]=$_POST["price"];
             $add["idTr"]=$_POST["idTr"];
 
@@ -68,8 +74,8 @@ class AdminController
             $update["idT"]=$id;
             $update["gareD"]=$_POST["gareD"];
             $update["gareA"]=$_POST["gareA"];
-            $update["dateD"]=$_POST["dateD"];
-            $update["dateA"]=$_POST["dateA"];
+            $update["HoursD"]=$_POST["HoursD"];
+            $update["HoursA"]=$_POST["HoursA"];
             $update["price"]=$_POST["price"];
             $update["states"]=$_POST["states"];
             $update["idTr"]=$_POST["idTr"];
@@ -86,10 +92,10 @@ class AdminController
         }
     }
 
-// public function CancelTrips($id)
+// public function DeleteTrips($id)
 //     {
 //         $db = new Trips();
-//         $db->CancelTrips($id);
+//         $db->DeleteTrips($id);
 //         header('location:/admin/add');
 //     }
 
@@ -106,14 +112,13 @@ class AdminController
     //         $db->CancelTrips($update);
     //         header('location:/admin/add');
 
-    //         // $_POST['reference']="";
     //     }
     //     else
     //     {
     //         $db = new Trips();
-    //         // $data['update'] = $db->GetTripsToCancel($id);
-    //         // $data['update'] = $db->GetTrain($id);
-    //         // view::load('/admin/add',$data);
+            
+    //         $data['update'] = $db->GetTrips($id);
+    //         view::load('/admin/add',$data);
     //     }
     // }
 
@@ -123,7 +128,7 @@ class AdminController
 
     { 
         $db = new Trips();
-        $data['reservation'] = $db->GetReservation();
+        $data['reservation'] = $db->GetReservationA();
         view::load('historyReserve',$data);
     }
 
@@ -141,10 +146,10 @@ class AdminController
     {
         view::load('adminProfile');
     }
-    public function logout()
 
+    public function showClient()
     {
-        view::load('login');
+        
     }
 
 

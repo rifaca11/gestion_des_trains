@@ -14,6 +14,33 @@
             </div>
         </div>
     </div>
+                   <!-- section -->
+                   <div class="container">
+    <h1>Search Here</h1>
+    <br><br>
+    <!-- first -->
+    <div class="first-form">
+        <div class="first-title">
+            <!-- <span id="title">Book Your Trip Now</span> -->
+            <form class="first" action="/Clients/search/" method="POST">
+                <div class="mb-3">
+                    <label class="form-label">Depart</label>
+                    <input type="text" name="gareD" class="form-control" required >
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Arrive</label>
+                    <input type="text" name="gareA" class="form-control" required>
+                </div>
+                <button type="submit" name="submit" class="btn btn-primary btn-block mt-4 mb-3">Search</button>
+            </form>
+        </div>
+    </div>
+
+            </div>
+
+
+
+
     <div class="container py-5">
     <h1>The popular cities</h1>
     <br><br>

@@ -21,11 +21,14 @@
                         <th>Status</th>
                         <th>First name</th>						
                         <th>Email</th>
-                        <th>GareD</th>
-                        <th>GareA</th>
-                        <th>DateD</th>
-                        <th>DateA</th>
+                        <th>gareD</th>
+                        <th>gareA</th>
+                        <th>HoursA</th>
+                        <th>HoursD</th>
+                        <th>day</th>
                         <th>Price</th>
+                        
+                        
                     </tr>
                 </thead>
                 <tbody>
@@ -39,8 +42,9 @@
                 <td> <?php echo $rowReserve['email']; ?></td>
                 <td> <?php echo $rowReserve['gareD']; ?></td>
                 <td> <?php echo $rowReserve['gareA']; ?></td>
-                <td> <?php echo $rowReserve['dateD']; ?></td>
-                <td> <?php echo $rowReserve['dateA']; ?></td>
+                <td> <?php echo $rowReserve['HoursD']; ?></td>
+                <td> <?php echo $rowReserve['HoursA']; ?></td>
+                <td> <?php echo $rowReserve['day']; ?></td>
                 <td> <?php echo $rowReserve['price']; ?></td>
                 </tr>
                     

@@ -1,71 +1,71 @@
-  <!--content-->
-  <div class="content">
+
+ 
+ <!--content-->
+ <div class="content">
                 <div class="wrap">
                     <div class="row">
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                             <div class="row">
                                 <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
                                     <div class="child">
-                                        <h6> <i class="las la-users"></i> customers</h6>
+                                        <h6> <i class="las la-users"></i> Customers</h6>
                                         <div class="details">
-                                            <h4>45,345</h4>
-
-                                            <span class="status up">
+                                            <h4><?php echo $count[0] ; ?></h4>
+                                            <!-- <span class="status up">
                                                 <i class="las la-arrow-up"></i>
                                                 5.54%
                                             </span>
-                                            <p>Since last month</p>
+                                            <p>Since last month</p> -->
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
                                     <div class="child">
-                                        <h6> <i class="las la-tasks"></i> orders</h6>
+                                        <h6> <i class="las la-tasks"></i> Reservation</h6>
                                         <div class="details">
-                                            <h4>7,345</h4>
-
-                                            <span class="status down">
+                                            <h4><?php echo $counttt[0] ; ?></h4>
+                                            <!-- <span class="status down">
                                                 <i class="las la-arrow-down"></i>
                                                 3.44%
                                             </span>
-                                            <p>Since last month</p>
+                                            <p>Since last month</p> -->
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
                                     <div class="child">
-                                        <h6> <i class="las la-wallet"></i> earning</h6>
+                                        <h6> <i class="las la-wallet"></i> Users</h6>
                                         <div class="details">
-                                            <h4>$ 15,345</h4>
+                                            <h4><h4><?php echo $countt[0] ; ?></h4></h4>
 
-                                            <span class="status down">
+                                            <!-- <span class="status down">
                                                 <i class="las la-arrow-down"></i>
                                                 5.64%
                                             </span>
-                                            <p>Since last month</p>
+                                            <p>Since last month</p> -->
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
                                     <div class="child">
-                                        <h6> <i class="las la-chart-pie"></i> growth</h6>
+                                        <h6> <i class="las la-chart-pie"></i> Trips</h6>
                                         <div class="details">
-                                            <h4>+ 55,34%</h4>
+                                            <h4><?php echo $countttt[0] ; ?></h4>
 
-                                            <span class="status up">
+                                            <!-- <span class="status up">
                                                 <i class="las la-arrow-up"></i>
                                                 5.84%
                                             </span>
-                                            <p>Since last month</p>
+                                            <p>Since last month</p> -->
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7 chart">
+                        <!-- <div class="col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7 chart">
                             <div class="child">
                                 <h6>
                                     <span>
@@ -78,11 +78,11 @@
                                     <canvas id="myChart"></canvas>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <!--second row-->
-                <div class="row sec-row">
+                <!-- <div class="row sec-row">
                     <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8">
                         <div class="child tableWrap">
                             <h6>
@@ -162,7 +162,7 @@
                         </div>
                     </div>
                     <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 chart-2">
-                        <div class="child">
+                        <!-- <div class="child">
                             <h6>
                                 <span>
                                     <i class="las la-chart-bar"></i>
@@ -174,7 +174,7 @@
                             <div class="pie">
                                 <canvas id="pie" height="200px" width="200px"></canvas>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>

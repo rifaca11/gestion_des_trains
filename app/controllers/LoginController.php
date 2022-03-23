@@ -5,6 +5,7 @@ session_start();
 
 class LoginController
 {
+
  public function index()
 
 {
@@ -48,10 +49,13 @@ public function register()
            }else{
               $add=$cl->registre(($_POST["firstname"]),($_POST["lastname"]) , $_POST["email"] , $_POST["tele"] , $_POST["city"] , $_POST["dateN"],($_POST["password"]));
               if($add==1){
-               echo "Votre information est bien enregistrer , Bienvenue"; 
-               view::load('/home/loginC');
+               // echo "Votre information est bien enregistrer , Bienvenue"; 
+               view::loadClient('loginClient');
+               // header('loaction:/home/loginC');
               }else{
-                echo "Votre information n'est pas bien enregistrer";
+               //  echo "Votre information n'est pas bien enregistrer";
+               view::loadClient('signupClient');
+               // header('loaction:/home/signupC');
               }
                
                 
@@ -83,14 +87,22 @@ public function loginAdmin()
         $add=$cl-> loginAd($_POST["email"],$_POST["password"]);
        
           if($add){
-             echo "tnks for your auth \n";
-             $_SESSION["idPAd"]= $_POST["idP"];
-             $_SESSION["firstnameAd"]= $_POST["firstname"];
-             $_SESSION["lastnameAd"]= $_POST["lastname"];
-             $_SESSION["emailAd"]=$_POST["email"];
-             view::load('/Admin');
+            //  echo "tnks for your auth \n";
+             $_SESSION["idPAd"]= $add[0]["idP"];
+             $_SESSION["firstnameAd"]= $add[0]["firstname"];
+             $_SESSION["lastnameAd"]= $add[0]["lastname"];
+             $_SESSION["emailAd"]=$add[0]["email"];
+
+             $db = new Person();
+             $tab['count'] = $db->nbrCLient();
+             $tab['countt'] = $db->nbrUser();
+             $tab['counttt'] = $db->nbrReservation();
+             $tab['countttt'] = $db->nbrTrips();
+             view::load('main',$tab);
+
           }else{
-             echo "your mail or password is invalid";
+            //  echo "your mail or password is invalid";
+            view::load('login');
           }
            
        }
@@ -100,7 +112,7 @@ public function loginAdmin()
 public function logoutAd(){
 
    session_destroy();
-   header("location:Admin/logout");
+   view::loadUser('loginAdmin/');
    
 }
      

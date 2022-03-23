@@ -20,7 +20,7 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-        <div class="modal-header text-light" style="background-color:rgb(146, 25, 120)">
+        <div class="modal-header text-light" style="background-color:#240c3fd3;">
             <h5 class="modal-title" id="exampleModalLabel">CREATE A NEW TRIP</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -40,13 +40,13 @@
             </div>
 
             <div class="form-group">
-            <label for="exampledateD">Date Depart</label>
-            <input type="datetime-local" class="form-control" name="dateD" id="exampledateD">
+            <label for="exampleHoursD">Date Depart</label>
+            <input type="time" class="form-control" name="HoursD" id="exampleHoursD">
             </div>
 
             <div class="form-group">
-            <label for="exampledateD">Date Arrive</label>
-            <input type="datetime-local" class="form-control" name="dateA" id="exampledateA">
+            <label for="exampleHoursD">Date Arrive</label>
+            <input type="time" class="form-control" name="HoursA" id="exampleHoursA">
             </div>
 
             <div class="form-group">
@@ -83,7 +83,7 @@
 
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn text-light" style="background-color:rgb(146, 25, 120)">Create</button>
+            <button type="submit" class="btn text-light" style="background-color:#240c3fd3;">Create</button>
         </div>
     </div>
 
@@ -108,8 +108,8 @@
                         <th>id</th>
                         <th>gareD</th>						
                         <th>gareA</th>
-                        <th>dateD</th>
-                        <th>dateA</th>
+                        <th>HoursD</th>
+                        <th>HoursA</th>
                         <th>price</th>
                         <th>states</th>
                         <th>train</th>
@@ -124,14 +124,14 @@
                 <td> <?php echo $i; $i++; ?> </td>
                 <td> <?php echo $row['gareD']; ?> </td>
                 <td> <?php echo $row['gareA']; ?> </td>
-                <td> <?php echo $row['dateD']; ?></td>
-                <td> <?php echo $row['dateA']; ?> </td> <b class="float-right"></b>
+                <td> <?php echo $row['HoursD']; ?></td>
+                <td> <?php echo $row['HoursA']; ?> </td> <b class="float-right"></b>
                 <td><?php echo  $row['price']; ?></td>
                 <td><?php echo  $row['states']; ?></td>
                 <td><?php echo  $row['nomT']; ?></td>
                 <td>
-                <a href="" name="update" class="edit" title="Edit" data-toggle="modal" data-target="#updateLabel" data-whatever="@mdo"><i class="las la-edit"></i></a>
-                <!-- <a href="" class="delete" title="Cancel" data-toggle="modal" data-target="#deleteLabel" ><i class="las la-eraser"></i></a> -->
+                <a href="" name="update" class="edit" title="Edit" data-toggle="modal" data-target="<?php echo '#updateLabel'.$row['idT']; ?>" data-whatever="@mdo"><i class="las la-edit"></i></a>
+                <!-- <a href="" class="delete" title="Cancel" data-toggle="modal" data-toggle="modal" data-target="<?php echo '#deleteLabel'.$row['idT']; ?>" ><i class="las la-eraser"></i></a> -->
                 </td>
                         </tr>
             
@@ -139,11 +139,11 @@
 
 <!-- start update trip -->
 
-<div class="modal fade" id="updateLabel" tabindex="-1" aria-labelledby="updateLabel" aria-hidden="true">
+<div class="modal fade" id="<?php echo 'updateLabel'.$row['idT']; ?>" tabindex="-1" aria-labelledby="<?php echo 'updateLabel'.$row['idT']; ?>" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-            <div class="modal-header text-light" style="background-color:rgb(146, 25, 120)">
-                <h5 class="modal-title" id="updateLabel">Update A TRIP</h5>
+            <div class="modal-header text-light" style="background-color:#240c3fd3;">
+                <h5 class="modal-title" id="<?php echo 'updateLabel'.$row['idT']; ?>">Update A TRIP</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
@@ -162,13 +162,13 @@
                 </div>
 
                 <div class="form-group">
-                <label for="exampledateD">Date Depart</label>
-                <input type="datetime" class="form-control" name="dateD" id="exampledateD" value="<?php echo $row['dateD']; ?>">
+                <label for="exampleHoursD">Date Depart</label>
+                <input type="datetime" class="form-control" name="HoursD" id="exampleHoursD" value="<?php echo $row['HoursD']; ?>">
                 </div>
 
                 <div class="form-group">
-                <label for="exampledateA">Date Arrive</label>
-                <input type="datetime" class="form-control" name="dateA" id="exampledateA" value="<?php echo $row['dateA']; ?>">
+                <label for="exampleHoursA">Date Arrive</label>
+                <input type="datetime" class="form-control" name="HoursA" id="exampleHoursA" value="<?php echo $row['HoursA']; ?>">
                 </div>
 
                 <div class="form-group">
@@ -179,20 +179,21 @@
                 <div class="form-group">
                 <select  class="form-control" name="states" id="exemplestates">
                 <option>Choose a states </option>
-                <?php foreach($trips as $rowStates){ ?>
-                <?php 
-                if($row['states'] === $rowStates['states']) 
-                {
-                ?>
-                <option selected class="form-control"> 
-                <?php echo $rowStates['states']?>
-                </option>
-                <?php }  
-                else {?>
-                
-                <option class="form-control"> 
-                <?php echo $rowStates['states']?>
-                </option>
+                <?php foreach($trips as $rowStates){?>
+                    <?php 
+                    if($row['states'] === $trips[0]['states']) 
+                    {
+                    ?>
+                    <option selected class="form-control"> 
+                      <?php echo $rowStates['states']?>
+                    </option>
+
+                    <?php }  
+                    else {?>
+                    
+                    <option class="form-control"> 
+                    <?php echo $rowStates['states']?>
+                    </option>
                 <?php }} ?>
                 </select>    
                 </div>
@@ -223,7 +224,7 @@
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn text-light" style="background-color:rgb(146, 25, 120)">Update</button>
+                <button type="submit" class="btn text-light" style="background-color:#240c3fd3;">Update</button>
             </div>
             </div>
 </form>
@@ -254,27 +255,28 @@
 </div>  
 
             <!-- start delete trip -->
-            <!-- <form action="/admin/CancelTrips/<//?php // echo $row//['idT']; ?>" method="POST">
-            <div class="modal" tabindex="-1" id="deleteLabel" tabindex="-1" aria-labelledby="deleteLabel">
+           
+            <!-- <div class="modal" tabindex="-1" id="<?php //echo 'deleteLabel'.$row['idT']; ?>" tabindex="-1" aria-labelledby="<?php echo 'deleteLabel'.$row['idT']; ?>">
             <div class="modal-dialog">
                 <div class="modal-content">
-                <div class="modal-header text-light" style="background-color:rgb(146, 25, 120)">
-                    <h5 class="modal-title" id="deleteLabel">Delete a trip</h5>
+                <div class="modal-header text-light" style="background-color:#240c3fd3;">
+                    <h5 class="modal-title" id="<?php echo 'deleteLabel'.$row['idT']; ?>>Delete a trip</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body text-center">
+                    <form action="/admin/DeleteTrips/<?php echo $row['idT']; ?>" method="POST">
                     <p> <h4>Are You Sure To ignored?</h4></p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn text-light" style="background-color:rgb(146, 25, 120)">ignore</button></a>
+                    <button type="submit" class="btn text-light" style="background-color:#240c3fd3;">ignore</button></a>
                 </div>
+                </form>
                 </div>
             </div>
-            </form> -->
-            </div>
+            </div> -->
     
 
 </body>
