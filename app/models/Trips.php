@@ -246,6 +246,20 @@ public function Cancel($id)
    else return 0;
   }
 
+  
+
+  // public function getPlace()
+  // { $sql = "SELECT nbrPlace from train where idTr=$id";
+  //   $stmt = $this->connect()->prepare($sql);
+  //   if($stmt->execute())
+  //   {
+  //     return $stmt->fetch();
+  //   }
+  //   else return 0;
+  //  }
+
+
+ 
 
 }
 

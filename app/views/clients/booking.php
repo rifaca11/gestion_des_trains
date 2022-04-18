@@ -58,7 +58,7 @@
             <form action="<?php echo '/Clients/bookingUs/'.$rowG['idT'] ?>" method="POST">
                 <div class="form-group">
                 <label for="exampleHoursD">Day</label>
-                <input type="date" class="form-control" name="day" id="exampleHoursD" value="<?php echo date("Y-%-%") ?>">
+                <input type="date" class="form-control" name="day" id="exampleHoursD" value="<?php echo date("Y-%-%") ?>" >
                 </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

@@ -83,10 +83,10 @@ class ClientsController
         view::loadClient('booking',$data);
     }
 
-else{
+    else{
         $data['tripsG'] = $db->GetGare();
         view::loadClient('booking',$data);
-}
+        }
     } 
 
     public function showReserve($id=-1)
@@ -112,13 +112,16 @@ else{
         {
 
         $datetime = $db->GetResToCancel($id);
-        print_r ($datetime);
+
+        // die(print_r($datetime));
 
         $ex1 = explode(" ",$datetime[0]);
         $ex2 = explode(":" , $ex1[1]);
+        // echo "here";
+    
         if ((date('h') - $ex2[0]) != 1)
         {
-            echo "true";
+            // echo "true";
             $db->Cancel($id);
         }
         header("location:/Clients/bookingUs");
@@ -156,36 +159,12 @@ else{
         }
     }
 
+   
 
 
     }
 
-    // public function search()
-    // {
-    //     if (isset($_POST["submit"])) {
-
-    //         $depart = $_POST["gareD"];
-    //         $arrive = $_POST["gareA"];
-    //         $day = $_POST["day"];
-
-    //         $gets = new Search();
-    //         $getTrips = $gets->reserv($depart,$arrive,$day);
-
-    //         if($getTrips)
-    //         {
-    //             view::loadClient('search');
-    //         }
-    //         else
-    //         {
-    //             view::loadClient('booking');
-
-    //             echo'<script language="javascript">';
-    //             echo"alert('No Results Found')";
-    //             echo"</script>";
-    //         }
-
-    //     }
-    // }
+   
 
    
 

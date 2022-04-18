@@ -31,27 +31,27 @@
             
         <div class="form-group">
             <label for="examplegareD">Gare Depart</label>
-            <input type="text" class="form-control" name="gareD" id="examplegareD">
+            <input type="text" class="form-control" name="gareD" id="examplegareD" required>
             </div>
 
             <div class="form-group">
             <label for="examplegareA">Gare Arrive</label>
-            <input type="text" class="form-control" name="gareA" id="examplegareA">
+            <input type="text" class="form-control" name="gareA" id="examplegareA" required>
             </div>
 
             <div class="form-group">
             <label for="exampleHoursD">Date Depart</label>
-            <input type="time" class="form-control" name="HoursD" id="exampleHoursD">
+            <input type="time" class="form-control" name="HoursD" id="exampleHoursD" required>
             </div>
 
             <div class="form-group">
             <label for="exampleHoursD">Date Arrive</label>
-            <input type="time" class="form-control" name="HoursA" id="exampleHoursA">
+            <input type="time" class="form-control" name="HoursA" id="exampleHoursA" required>
             </div>
 
             <div class="form-group">
             <label for="exampleprice">Price</label>
-            <input type="number" class="form-control" name="price" id="exampleprice">
+            <input type="number" class="form-control" name="price" id="exampleprice" required>
             </div>
             
             <div class="form-group">
@@ -153,27 +153,27 @@
 
                 <div class="form-group">
                 <label for="examplegareD">Gare Depart</label>
-                <input type="text" class="form-control" name="gareD" id="examplegareD" value="<?php echo $row['gareD']; ?>">
+                <input type="text" class="form-control" name="gareD" id="examplegareD" value="<?php echo $row['gareD']; ?>" required>
                 </div>
 
                 <div class="form-group">
                 <label for="examplegareA">Gare Arrive</label>
-                <input type="text" class="form-control" name="gareA" id="examplegareA" value="<?php echo $row['gareA']; ?>">
+                <input type="text" class="form-control" name="gareA" id="examplegareA" value="<?php echo $row['gareA']; ?>" required>
                 </div>
 
                 <div class="form-group">
                 <label for="exampleHoursD">Date Depart</label>
-                <input type="datetime" class="form-control" name="HoursD" id="exampleHoursD" value="<?php echo $row['HoursD']; ?>">
+                <input type="time" class="form-control" name="HoursD" id="exampleHoursD" value="<?php echo $row['HoursD']; ?>" required>
                 </div>
 
                 <div class="form-group">
                 <label for="exampleHoursA">Date Arrive</label>
-                <input type="datetime" class="form-control" name="HoursA" id="exampleHoursA" value="<?php echo $row['HoursA']; ?>">
+                <input type="time" class="form-control" name="HoursA" id="exampleHoursA" value="<?php echo $row['HoursA']; ?>" required>
                 </div>
 
                 <div class="form-group">
                 <label for="exampleprice">Price</label>
-                <input type="number" class="form-control" name="price" id="exampleprice" value="<?php echo $row['price']; ?>">
+                <input type="number" class="form-control" name="price" id="exampleprice" value="<?php echo $row['price']; ?>" required>
                 </div>
 
                 <div class="form-group">

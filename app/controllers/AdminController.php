@@ -147,9 +147,41 @@ class AdminController
         view::load('adminProfile');
     }
 
-    public function showClient()
+    public function UpdateAdmin()
+
     {
-        
+    
+        if($_SERVER['REQUEST_METHOD']=='POST' && !empty($_POST['firstname']) && !empty($_POST['lastname']) && !empty($_POST['email']) && !empty($_POST['tele']) && !empty($_POST['city']) && !empty($_POST['dateN'])){
+            $db = new Person();
+            // echo $_SESSION["idPAd"];
+            $update =[];
+            $update["idP"]=$_SESSION["idPAd"];
+            $update["firstname"]=$_POST["firstname"];
+            $update["lastname"]=$_POST["lastname"];
+            $update["email"]=$_POST["email"];
+            $update["tele"]=$_POST["tele"];
+            $update["city"]=$_POST["city"];
+            $update["dateN"]=$_POST["dateN"];
+            $update["password"]=$_POST["password"];
+            
+            // print_r($update);
+            if ($db->UpdateAdmin($update)) {
+                $db = new Person();
+                $data['infosA'] = $db->GetAdmin($_SESSION["idPAd"]);
+
+                view::load('adminProfile',$data);
+            }
+            
+        }
+            else
+            {
+                $db = new Person();
+                $data['infosA'] = $db->GetAdmin($_SESSION["idPAd"]);
+                view::load('adminProfile',$data);
+            }
+
+
+
     }
 
 

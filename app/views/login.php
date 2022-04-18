@@ -24,11 +24,11 @@
                                 <form action="/Login/loginAdmin/" method="POST">
                                     <div class="form-group">
                                         <label for="email">Email <sup>*</sup></label>
-                                        <input type="email" class="form-control" id="email" name="email" placeholder="Email *">
+                                        <input type="email" class="form-control" id="email" name="email" placeholder="Email *" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="password">Password <sup>*</sup></label>
-                                        <input type="password" class="form-control" id="password" name="password" placeholder="Password *">
+                                        <input type="password" class="form-control" id="password" name="password" placeholder="Password *" required>
                                     </div>
                                     <div class="form-actions-wrapper d-flex flex-wrap align-items-center justify-content-between">
                                         <div class="form-check">

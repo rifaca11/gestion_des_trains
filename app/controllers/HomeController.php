@@ -30,7 +30,7 @@ class HomeController
     public function loginC()
 
     {
-        view::loadClient('loginClient');
+        view::loadUser('loginClient');
     }
 
     public function loginAdmin()
@@ -42,7 +42,7 @@ class HomeController
     public function signupC()
 
     {
-        view::loadClient('signupClient');
+        view::loadUser('signupClient');
     }
 
     public function booking($id=-1)

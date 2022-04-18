@@ -72,6 +72,7 @@
                                 <i class="las la-cog"></i>
                             </a>
                             <div class="dropdown-menu">
+                            <a class="dropdown-item" href="/admin/UpdateAdmin/"> Check Profil</a>
                             <a class="dropdown-item" href="/home/loginAdmin">logout</a>
                                 <!-- <div class="dropdown-divider"></div> -->
                                 <!-- <a class="dropdown-item" href="/admin/profil"> Check Profil</a> -->

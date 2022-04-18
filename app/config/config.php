@@ -4,7 +4,7 @@ define('BURL',"mymvc.ma");
 define("HOST","localhost");
 define("USER","root");
 define("PASS","");
-define("DBNAME","brief4");
+define("DBNAME","brief5");
 
 
 

@@ -12,7 +12,7 @@ class DB
      {
       
       try {
-        $conn = new PDO("mysql:host=localhost;dbname=brief5", 'root','');
+        $conn = new PDO("mysql:host=localhost;dbname=gestion_trains", 'root','');
         // set the PDO error mode to exception
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         return $conn;
