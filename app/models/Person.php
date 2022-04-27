@@ -19,7 +19,19 @@ class Person extends DB
 
 public function UpdatePerson($update)
 {
-  $sql = "UPDATE person SET firstname=?,lastname=?,email=?, tele=?, city=?, dateN=?, password=? WHERE idP=? and role=2";
+  if(empty($update['password'])){
+    $sql = "UPDATE person SET firstname=?,lastname=?,email=?, tele=?, city=?, dateN=?  WHERE idP=? and role=2";
+    $stmt = $this->connect()->prepare($sql);
+    if($stmt->execute(array($update['firstname'],$update['lastname'],$update['email'],$update['tele'],$update['city'],$update['dateN'],$update['idP']))) 
+   {
+       return true;
+   }
+   else
+   {
+     return false;
+   }
+  }else{
+    $sql = "UPDATE person SET firstname=?,lastname=?,email=?, tele=?, city=?, dateN=?, password=? WHERE idP=? and role=2";
     // use exec() because no results are returned
     $stmt = $this->connect()->prepare($sql);
    if($stmt->execute(array($update['firstname'],$update['lastname'],$update['email'],$update['tele'],$update['city'],$update['dateN'],$update['password'],$update['idP']))) 
@@ -30,6 +42,10 @@ public function UpdatePerson($update)
    {
      return false;
    }
+  }
+  
+
+  
   
   }
 
@@ -81,7 +97,19 @@ public function UpdatePerson($update)
  
 public function UpdateAdmin($update)
 {
-  $sql = "UPDATE person SET firstname=?,lastname=?,email=?, tele=?, city=?, dateN=?, password=? WHERE idP=? and role=1";
+  if(empty($update['password'])){
+    $sql = "UPDATE person SET firstname=?,lastname=?,email=?, tele=?, city=?, dateN=?  WHERE idP=? and role=1";
+    $stmt = $this->connect()->prepare($sql);
+    if($stmt->execute(array($update['firstname'],$update['lastname'],$update['email'],$update['tele'],$update['city'],$update['dateN'],$update['idP']))) 
+   {
+       return true;
+   }
+   else
+   {
+     return false;
+   }
+  }else{
+    $sql = "UPDATE person SET firstname=?,lastname=?,email=?, tele=?, city=?, dateN=?, password=? WHERE idP=? and role=1";
     // use exec() because no results are returned
     $stmt = $this->connect()->prepare($sql);
    if($stmt->execute(array($update['firstname'],$update['lastname'],$update['email'],$update['tele'],$update['city'],$update['dateN'],$update['password'],$update['idP']))) 
@@ -92,6 +120,8 @@ public function UpdateAdmin($update)
    {
      return false;
    }
+  }
+  
   
   }
 

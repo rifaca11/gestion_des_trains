@@ -5,7 +5,7 @@ class Trips extends DB
 
  public function GetTrips()
  {
-    $sql = "SELECT T.idT,T.gareD,T.gareA,T.HoursD,T.HoursA,T.price,T.states,Tr.nomT FROM trips T, train Tr where Tr.idTr=T.idTr";
+    $sql = "SELECT T.idT,T.gareD,T.gareA,T.HoursD,T.HoursA,T.price,Tr.nomT,S.status FROM trips T, train Tr, states S where Tr.idTr=T.idTr and S.idS=T.idS";
     $stmt = $this->connect()->prepare($sql);
     if($stmt->execute())
     {
@@ -33,7 +33,19 @@ public function GetTrain()
 
 public function GetGare()
 {
-   $sql = "SELECT idT, gareD ,gareA, HoursD, HoursA, price from trips";
+   $sql = "SELECT idT, gareD ,gareA, HoursD, HoursA, price,idS from trips where idS in (select idS from states where status='valid') ";
+   $stmt = $this->connect()->prepare($sql);
+   if($stmt->execute())
+   {
+     return $stmt->fetchAll();
+   }
+   else return 0;
+
+}
+
+public function GetStates()
+{
+   $sql = "SELECT idS,status from states";
    $stmt = $this->connect()->prepare($sql);
    if($stmt->execute())
    {
@@ -45,7 +57,7 @@ public function GetGare()
 
 public function GetGareDispo($gareD,$gareA)
 {
-      $sql ="SELECT idT, gareD ,gareA, HoursD, HoursA, price FROM trips WHERE gareD='$gareD' and gareA='$gareA' ";
+      $sql ="SELECT idT, gareD ,gareA, HoursD, HoursA, price,idS FROM trips WHERE gareD='$gareD' and gareA='$gareA' and idS in (select idS from states where status='valid') ";
       $stmt = $this->connect()->prepare($sql);
       if($stmt->execute())
    {
@@ -64,11 +76,11 @@ public function GetGareDispo($gareD,$gareA)
 
     public function AddTrips($add)
     {
-      $sql = "INSERT INTO trips (gareD, gareA, HoursD, HoursA, price, idTr)
-      VALUES (?,?,?,?,?,?)";
+      $sql = "INSERT INTO trips (gareD, gareA, HoursD, HoursA, price,idS,idTr)
+      VALUES (?,?,?,?,?,?,?)";
       // use exec() because no results are returned
       $stmt = $this->connect()->prepare($sql);
-    if($stmt->execute(array($add['gareD'],$add['gareA'],$add['HoursD'],$add['HoursA'],$add['price'],$add['idTr']))) 
+    if($stmt->execute(array($add['gareD'],$add['gareA'],$add['HoursD'],$add['HoursA'],$add['price'],$add['idS'],$add['idTr'])))
     {
         echo "New record created successfully";
     }
@@ -101,10 +113,10 @@ public function GetGareDispo($gareD,$gareA)
 
 public function UpdateTrips($update)
 {
-  $sql = "UPDATE trips SET gareD=?,gareA=?,HoursD=?, HoursA=?, price=?, states=?, idTr=? WHERE idT=?";
+  $sql = "UPDATE trips SET gareD=?,gareA=?,HoursD=?, HoursA=?, price=?,idS=?,idTr=? WHERE idT=?";
     // use exec() because no results are returned
     $stmt = $this->connect()->prepare($sql);
-   if($stmt->execute(array($update['gareD'],$update['gareA'],$update['HoursD'],$update['HoursA'],$update['price'],$update['states'],$update['idTr'],$update['idT']))) 
+   if($stmt->execute(array($update['gareD'],$update['gareA'],$update['HoursD'],$update['HoursA'],$update['price'],$update['idS'],$update['idTr'],$update['idT']))) 
    {
        echo "update successfully";
    }
@@ -237,7 +249,7 @@ public function Cancel($id)
 
   public function GetResToCancel($id)
 {
-   $sql = "SELECT create_at from reservation where idRes=$id";
+   $sql = "SELECT T.HoursD,R.day from reservation R ,trips T where R.idRes=$id and T.idT=R.idT";
    $stmt = $this->connect()->prepare($sql);
    if($stmt->execute())
    {

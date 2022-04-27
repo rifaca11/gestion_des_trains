@@ -8,12 +8,7 @@ class AdminController
     public function index()
 
     {
-        $db = new Person();
-        $tab['count'] = $db->nbrCLient();
-        $tab['countt'] = $db->nbrUser();
-        $tab['counttt'] = $db->nbrReservation();
-        $tab['countttt'] = $db->nbrTrips();
-        view::load('main',$tab);
+        view::load('login');
 
     }
     
@@ -21,13 +16,41 @@ class AdminController
     public function add()
 
     {
+        if(isset($_SESSION["idPAd"]) || !empty($_SESSION["idPAd"]))
+        {
         $db = new Trips();
+        // die($id);
         $data['trips'] = $db->GetTrips();
         $data['train'] = $db->GetTrain();
+        $data['states'] = $db->Getstates();
 
         // print_r($data['trips']);
 
         view::load('create',$data);
+        }
+    else
+        {
+        view::load('login');
+        }
+       
+    }
+
+
+    public function showdashboard()
+    {
+        if(isset($_SESSION["idPAd"]) || !empty($_SESSION["idPAd"]))
+        {
+            $db = new Person();
+            $tab['count'] = $db->nbrCLient();
+            $tab['countt'] = $db->nbrUser();
+            $tab['counttt'] = $db->nbrReservation();
+            $tab['countttt'] = $db->nbrTrips();
+            view::load('main',$tab);
+        }
+    else
+        {
+        view::load('login');
+        }
     }
 
     // public function DeleteTrips($id)
@@ -50,6 +73,7 @@ class AdminController
             $add["HoursA"]=$_POST["HoursA"];
             $add["price"]=$_POST["price"];
             $add["idTr"]=$_POST["idTr"];
+            $add["idS"]=$_POST["idS"];
 
             //  var_dump($add);
             $db->AddTrips($add);
@@ -77,9 +101,9 @@ class AdminController
             $update["HoursD"]=$_POST["HoursD"];
             $update["HoursA"]=$_POST["HoursA"];
             $update["price"]=$_POST["price"];
-            $update["states"]=$_POST["states"];
+            $update["idS"]=$_POST["idS"];
             $update["idTr"]=$_POST["idTr"];
-            // print_r($update);
+         
             $db->UpdateTrips($update);
             header('location:/admin/add');
         }
@@ -127,30 +151,54 @@ class AdminController
     public function history()
 
     { 
-        $db = new Trips();
-        $data['reservation'] = $db->GetReservationA();
-        view::load('historyReserve',$data);
+        if(isset($_SESSION["idPAd"]) || !empty($_SESSION["idPAd"]))
+        {
+            $db = new Trips();
+            $data['reservation'] = $db->GetReservationA();
+            view::load('historyReserve',$data);
+        }
+    else
+        {
+        view::load('login');
+        }
+        
     }
 
     public function showClients()
 
     {
-        $db = new Trips();
-        $data['person'] = $db->GetClients();
-        view::load('infosClient',$data);
+        if(isset($_SESSION["idPAd"]) || !empty($_SESSION["idPAd"]))
+        {
+            
+            $db = new Trips();
+            $data['person'] = $db->GetClients();
+            view::load('infosClient',$data);
+        }
+    else
+        {
+        view::load('login');
+        }
+        
     }
 
     
     public function profil()
 
     {
-        view::load('adminProfile');
+        if(isset($_SESSION["idPAd"]) || !empty($_SESSION["idPAd"]))
+        {
+            view::load('adminProfile');
+        }
+    else
+        {
+        view::load('login');
+        }
+       
     }
 
     public function UpdateAdmin()
 
     {
-    
         if($_SERVER['REQUEST_METHOD']=='POST' && !empty($_POST['firstname']) && !empty($_POST['lastname']) && !empty($_POST['email']) && !empty($_POST['tele']) && !empty($_POST['city']) && !empty($_POST['dateN'])){
             $db = new Person();
             // echo $_SESSION["idPAd"];

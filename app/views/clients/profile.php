@@ -12,7 +12,7 @@
 </div>  
 <br>
 <div class="container">
-<form action="" method="POST">
+<form action="Clients/UpdatePerson/" method="POST">
         <div class="row">
             <div class="col-6">
                 <input name="firstname" type="text" class="form-control" placeholder="First Name" aria-label="First Name" value="<?php echo $infosP['firstname']; ?>">

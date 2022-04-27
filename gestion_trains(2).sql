@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 06, 2022 at 09:06 PM
+-- Generation Time: Apr 27, 2022 at 05:09 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `brief5`
+-- Database: `gestion_trains`
 --
 
 -- --------------------------------------------------------
@@ -44,13 +44,9 @@ CREATE TABLE `person` (
 --
 
 INSERT INTO `person` (`idP`, `firstname`, `lastname`, `email`, `tele`, `city`, `dateN`, `password`, `role`) VALUES
-(2, 'charifa', 'hniguira', 'charifah1112@gmail.com', 624535746, 'safi', '2000-12-11', '123456789', 1),
-(3, 'ashraf', 'hniguira', 'ashraf@gmail.com', 624535764, 'safi', '2000-12-11', '12345678', 2),
-(4, 'faty', 'hniguira', 'faty@gmail.com', 642356789, 'safi', '2006-07-10', '', 3),
-(5, 'laila', 'lahmiri', 'laila@gmail.com', 678987645, 'safi', '1999-01-01', '1234567', 2),
-(6, 'mohammed', 'hniguira', 'mohammed@gmail.com', 678435676, 'safi', '1989-07-10', '123456', 2),
-(7, 'nawal', 'lahmiri', 'nawal@gmail.com', 12345678, 'safi', '1987-01-01', 'AZERTYUIOP', 2),
-(10, 'idriss', 'ait hadou', 'idriss@gmail.com', 678987645, 'safi', '1999-06-09', 'WXCVBN', 2);
+(2, 'Sharifa', 'Koala', 'charifah1112@gmail.com', 624535746, 'nador', '2000-12-11', '12345', 1),
+(14, 'Hichamm', 'El Kamouni', 'hicham@gmail.com', 87655456, 'safi', '1997-02-27', '1234', 2),
+(20, 'haytham', 'haoudi', 'haytham@gmail.com', 62524353, '', '0000-00-00', '', 3);
 
 -- --------------------------------------------------------
 
@@ -61,6 +57,8 @@ INSERT INTO `person` (`idP`, `firstname`, `lastname`, `email`, `tele`, `city`, `
 CREATE TABLE `reservation` (
   `idRes` int(11) NOT NULL,
   `status` enum('valid','invalid') NOT NULL DEFAULT 'valid',
+  `day` date DEFAULT NULL,
+  `create_at` datetime DEFAULT current_timestamp(),
   `idP` int(11) NOT NULL,
   `idT` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -69,11 +67,9 @@ CREATE TABLE `reservation` (
 -- Dumping data for table `reservation`
 --
 
-INSERT INTO `reservation` (`idRes`, `status`, `idP`, `idT`) VALUES
-(1, 'valid', 3, 2),
-(2, 'valid', 4, 4),
-(3, 'valid', 10, 1),
-(4, 'valid', 10, 3);
+INSERT INTO `reservation` (`idRes`, `status`, `day`, `create_at`, `idP`, `idT`) VALUES
+(20, 'invalid', '2022-04-27', '2022-04-27 11:48:15', 14, 1),
+(21, 'valid', '2022-04-27', '2022-04-27 14:44:46', 14, 9);
 
 -- --------------------------------------------------------
 
@@ -94,6 +90,25 @@ INSERT INTO `role` (`idR`, `nom`) VALUES
 (1, 'admin'),
 (2, 'client'),
 (3, 'user');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `states`
+--
+
+CREATE TABLE `states` (
+  `idS` int(11) NOT NULL,
+  `status` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `states`
+--
+
+INSERT INTO `states` (`idS`, `status`) VALUES
+(1, 'valid'),
+(2, 'invalid');
 
 -- --------------------------------------------------------
 
@@ -127,23 +142,26 @@ CREATE TABLE `trips` (
   `idT` int(11) NOT NULL,
   `gareD` varchar(100) NOT NULL,
   `gareA` varchar(100) NOT NULL,
-  `HoursD` datetime NOT NULL DEFAULT current_timestamp(),
-  `HoursA` datetime NOT NULL DEFAULT current_timestamp(),
+  `HoursD` time NOT NULL DEFAULT current_timestamp(),
+  `HoursA` time NOT NULL DEFAULT current_timestamp(),
   `price` double NOT NULL,
-  `states` enum('valid','invalid') NOT NULL DEFAULT 'valid',
-  `idTr` int(11) NOT NULL
+  `idTr` int(11) NOT NULL,
+  `idS` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `trips`
 --
 
-INSERT INTO `trips` (`idT`, `gareD`, `gareA`, `HoursD`, `HoursA`, `price`, `states`, `idTr`) VALUES
-(1, 'safi', 'casa', '2022-02-23 15:58:14', '2022-02-24 15:57:05', 50, 'invalid', 1),
-(2, 'fes', 'casa', '2022-02-23 15:58:42', '2022-02-25 15:57:05', 900, 'invalid', 2),
-(3, 'tanger', 'safi', '2022-02-23 17:02:00', '2022-02-24 17:02:00', 455, 'valid', 1),
-(4, 'meknes', 'marrakech', '2022-02-23 20:19:00', '2022-02-25 20:19:00', 546, 'valid', 2),
-(5, 'fes', 'safi', '2022-02-28 13:42:00', '2022-03-01 13:42:00', 546, 'invalid', 1);
+INSERT INTO `trips` (`idT`, `gareD`, `gareA`, `HoursD`, `HoursA`, `price`, `idTr`, `idS`) VALUES
+(1, 'safi', 'casa', '21:58:14', '02:57:05', 50, 1, 1),
+(2, 'fes', 'casa', '15:58:42', '15:57:05', 900, 2, 2),
+(4, 'meknes', 'marrakech', '20:19:00', '20:19:00', 546, 2, 1),
+(5, 'fes', 'safi', '13:42:00', '13:42:00', 546, 1, 2),
+(6, 'agadir', 'nador', '00:00:00', '18:00:00', 1000, 2, 1),
+(7, 'tanger', 'nador', '11:29:00', '03:29:00', 123, 1, 2),
+(8, 'fes', 'kech', '13:45:00', '14:45:00', 234, 2, 2),
+(9, 'taourirt', 'casa', '14:40:00', '15:39:00', 234, 1, 1);
 
 --
 -- Indexes for dumped tables
@@ -171,6 +189,12 @@ ALTER TABLE `role`
   ADD PRIMARY KEY (`idR`);
 
 --
+-- Indexes for table `states`
+--
+ALTER TABLE `states`
+  ADD PRIMARY KEY (`idS`);
+
+--
 -- Indexes for table `train`
 --
 ALTER TABLE `train`
@@ -181,7 +205,8 @@ ALTER TABLE `train`
 --
 ALTER TABLE `trips`
   ADD PRIMARY KEY (`idT`),
-  ADD KEY `idTr` (`idTr`);
+  ADD KEY `idTr` (`idTr`),
+  ADD KEY `idS` (`idS`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -191,19 +216,25 @@ ALTER TABLE `trips`
 -- AUTO_INCREMENT for table `person`
 --
 ALTER TABLE `person`
-  MODIFY `idP` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `idP` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `idRes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idRes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `role`
 --
 ALTER TABLE `role`
   MODIFY `idR` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `states`
+--
+ALTER TABLE `states`
+  MODIFY `idS` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `train`
@@ -215,7 +246,7 @@ ALTER TABLE `train`
 -- AUTO_INCREMENT for table `trips`
 --
 ALTER TABLE `trips`
-  MODIFY `idT` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idT` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables
@@ -238,7 +269,8 @@ ALTER TABLE `reservation`
 -- Constraints for table `trips`
 --
 ALTER TABLE `trips`
-  ADD CONSTRAINT `trips_ibfk_1` FOREIGN KEY (`idTr`) REFERENCES `train` (`idTr`);
+  ADD CONSTRAINT `trips_ibfk_1` FOREIGN KEY (`idTr`) REFERENCES `train` (`idTr`),
+  ADD CONSTRAINT `trips_ibfk_2` FOREIGN KEY (`idS`) REFERENCES `states` (`idS`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

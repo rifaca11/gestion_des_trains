@@ -27,7 +27,7 @@
             </button>
         </div>
         <div class="modal-body text-dark bg-light">
-        <form action="/admin/AddTrips" method="POST">
+        <form action="/admin/AddTrips/" method="POST">
             
         <div class="form-group">
             <label for="examplegareD">Gare Depart</label>
@@ -35,7 +35,7 @@
             </div>
 
             <div class="form-group">
-            <label for="examplegareA">Gare Arrive</label>
+            <label for="examplgareA">Gare Arrive</label>
             <input type="text" class="form-control" name="gareA" id="examplegareA" required>
             </div>
 
@@ -54,12 +54,15 @@
             <input type="number" class="form-control" name="price" id="exampleprice" required>
             </div>
             
+
+            
+
             <div class="form-group">
-            <select  class="form-control" name="states" id="exemplestates">
+            <select  class="form-control" name="idS" id="exemplestates">
             <option>States</option>
-            <?php foreach($trips as $rowStates){ ?>
-            <option  class="form-control"> 
-            <?php echo $rowStates['states']?>
+            <?php foreach($states as $rowStates){ ?>
+            <option  class="form-control" value="<?php echo $rowStates['idS']?>">
+            <?php echo $rowStates['status']?>
             </option>
             <?php }  ?>
             </select>    
@@ -127,7 +130,7 @@
                 <td> <?php echo $row['HoursD']; ?></td>
                 <td> <?php echo $row['HoursA']; ?> </td> <b class="float-right"></b>
                 <td><?php echo  $row['price']; ?></td>
-                <td><?php echo  $row['states']; ?></td>
+                <td><?php echo  $row['status']; ?></td>
                 <td><?php echo  $row['nomT']; ?></td>
                 <td>
                 <a href="" name="update" class="edit" title="Edit" data-toggle="modal" data-target="<?php echo '#updateLabel'.$row['idT']; ?>" data-whatever="@mdo"><i class="las la-edit"></i></a>
@@ -177,32 +180,31 @@
                 </div>
 
                 <div class="form-group">
-                <select  class="form-control" name="states" id="exemplestates">
+                <select  class="form-control" name="idS" id="exempletrain">
                 <option>Choose a states </option>
-                <?php foreach($trips as $rowStates){?>
-                    <?php 
-                    if($row['states'] === $trips[0]['states']) 
-                    {
-                    ?>
-                    <option selected class="form-control"> 
-                      <?php echo $rowStates['states']?>
-                    </option>
-
-                    <?php }  
-                    else {?>
-                    
-                    <option class="form-control"> 
-                    <?php echo $rowStates['states']?>
-                    </option>
+                <?php foreach($states as $rowStates){ ?>
+                <?php 
+                if($row['status'] === $rowStates['status']) 
+                {
+                ?>
+                <option selected class="form-control" value="<?php echo $rowStates['idS']?>"> 
+                <?php echo $rowStates['status']?>
+                </option>
+                <?php }  
+                else {?>
+                
+                <option class="form-control" value="<?php echo $rowStates['idS']?>"> 
+                <?php echo $rowStates['status']?>
+                </option>
                 <?php }} ?>
-                </select>    
+                </select>   
                 </div>
 
 
                 <div class="form-group">
                 <select  class="form-control" name="idTr" id="exempletrain">
                 <option>Choose a train </option>
-                <?php foreach($train as $rowTrain){ ?>
+                <?php foreach($train as $rowStates){ ?>
                 <?php 
                 if($row['nomT'] === $rowTrain['nomT']) 
                 {

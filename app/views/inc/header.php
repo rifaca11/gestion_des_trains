@@ -11,8 +11,8 @@
 </head>
 
 <body>
-    <div class="wrapper">
-        <nav id="sidebar" style="height:100vh">
+    <div class="wrapper" style="min-height: 800px !important">
+        <nav id="sidebar">
             <div class="fixed">
                 <div class="sidebar-header">
                     <div class="logo">
@@ -24,7 +24,7 @@
                 <ul class="list-unstyled components my-5">
                     <h6>main</h6>
                     <li class="active my-2">
-                        <a href="/admin">
+                        <a href="/admin/showdashboard">
                             <span> <i class="las la-tachometer-alt"></i> dashboard </span>
                         </a>
                     </li>

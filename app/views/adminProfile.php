@@ -44,7 +44,7 @@
         <br>
         <div class="row">
                 <div class="col-6">
-                    <input type="password" name="password" class="form-control" placeholder="Password" aria-label="password" required>
+                    <input type="password" name="password" class="form-control" placeholder="Password" aria-label="password">
                 </div>
                 <div class="col-6">
                     <button class="btn btn w-100 text-light" type="submit" name="update" style="background-color:#240c3fd3;">update</button>

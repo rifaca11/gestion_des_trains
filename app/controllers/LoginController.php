@@ -50,11 +50,11 @@ public function register()
               $add=$cl->registre(($_POST["firstname"]),($_POST["lastname"]) , $_POST["email"] , $_POST["tele"] , $_POST["city"] , $_POST["dateN"],($_POST["password"]));
               if($add==1){
                // echo "Votre information est bien enregistrer , Bienvenue"; 
-               view::loadClient('loginClient');
+               view::loadUser('loginClient');
                // header('loaction:/home/loginC');
               }else{
                //  echo "Votre information n'est pas bien enregistrer";
-               view::loadClient('signupClient');
+               view::loadUser('signupClient');
                // header('loaction:/home/signupC');
               }
                

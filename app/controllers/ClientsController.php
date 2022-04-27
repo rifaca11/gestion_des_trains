@@ -4,25 +4,24 @@
 session_start();
 class ClientsController
 {
+    // public function  __construct()
+    // {
+    //     if(!isset($_SESSION['idPCl'])){
+    //         view::loadUser('loginClient');
+    //     }
+    // }
     public function index()
     {
         // Check if the user is logged in, if not then redirect him to login page
-        if(isset($_SESSION["idPCl"]) || !empty($_SESSION["idPCl"])  ){
                 view::loadClient('compteClient');
-        }
-        else{
-            view::loadUser('home');
-        }
+    
     }
 
     public function Booking()
     {
-        if(isset($_SESSION["idPCl"]) || !empty($_SESSION["idPCl"])  ){
+        $db = new Person();
+        $db->GetGareDispo($gareD,$gareA);
         view::loadClient('booking');
-    }
-    else{
-        view::loadUser('home');
-    }
     }
     
     public function UpdatePerson()
@@ -32,6 +31,7 @@ class ClientsController
         if($_SERVER['REQUEST_METHOD']=='POST' && !empty($_POST['firstname']) && !empty($_POST['lastname']) && !empty($_POST['email']) && !empty($_POST['tele']) && !empty($_POST['city']) && !empty($_POST['dateN'])){
             $db = new Person();
             // echo $_SESSION["idPCl"];
+
             $update =[];
             $update["idP"]=$_SESSION["idPCl"];
             $update["firstname"]=$_POST["firstname"];
@@ -40,7 +40,9 @@ class ClientsController
             $update["tele"]=$_POST["tele"];
             $update["city"]=$_POST["city"];
             $update["dateN"]=$_POST["dateN"];
-            $update["password"]=$_POST["password"];
+    
+            $update["password"]=trim($_POST["password"]);
+         
             
             // print_r($update);
             if ($db->UpdatePerson($update)) {
@@ -57,9 +59,6 @@ class ClientsController
                 $data['infosP'] = $db->GetPerson($_SESSION["idPCl"]);
                 view::loadClient('profile',$data);
             }
-
-
-
     }
      
     public function bookingUs($id=-1)
@@ -69,7 +68,6 @@ class ClientsController
         if($_SERVER['REQUEST_METHOD']=='POST' && !empty($_POST['day']))
         {
         
-       
         $ajout =[];
         $ajout["day"]=$_POST["day"];
         $ajout["idP"]=$_SESSION["idPCl"];
@@ -111,20 +109,30 @@ class ClientsController
         if($_SERVER['REQUEST_METHOD']=='POST')
         {
 
-        $datetime = $db->GetResToCancel($id);
+        date_default_timezone_set('africa/casablanca');
+        $time_depart = $db->GetResToCancel($id);
+        // print_r ($time_depart);
+        // echo $time_depart['day'];
+        $day_dep=$time_depart['day'].' '.$time_depart['HoursD'];
+        // print_r($day_dep);
+        // exit;
 
-        // die(print_r($datetime));
+        date_default_timezone_set('africa/casablanca');
+        $time_reserve  = new DateTime(date("H:i:s",strtotime($day_dep)));
+        $now = new DateTime(date("H:i:s"));
+                  // print_r($now) ;
+                  // exit;
 
-        $ex1 = explode(" ",$datetime[0]);
-        $ex2 = explode(":" , $ex1[1]);
-        // echo "here";
+
+        $intvl = $time_reserve->diff($now);
+        $timeLeft= $intvl->y * 365 * 24 * 60 + $intvl->m * 30 * 24 * 60 + $intvl->d * 24 * 60 + $intvl->h * 60 + $intvl->i;
+       
     
-        if ((date('h') - $ex2[0]) != 1)
+        if ($timeLeft>60)
         {
-            // echo "true";
             $db->Cancel($id);
         }
-        header("location:/Clients/bookingUs");
+        header("location:/Clients/showReserve");
         exit();
         }
         else{
@@ -133,7 +141,7 @@ class ClientsController
         }
     }
 
-    public function search()
+    public function searchC()
     {
         if($_SERVER['REQUEST_METHOD']=='POST') {
             $db = new Trips();
@@ -149,26 +157,27 @@ class ClientsController
             }
             else
             {
-                view::loadClient('compteClient');
-
+                header("location:/Clients");
+                // view::loadUser('home');
                 echo'<script language="javascript">';
                 echo"alert('No Results Found')";
                 echo"</script>";
+                
+                
             }
 
         }
     }
 
    
+   
 
 
     }
 
-   
-
-   
-
-
 
 
 ?>
+
+
+

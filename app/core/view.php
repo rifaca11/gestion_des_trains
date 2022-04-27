@@ -7,6 +7,7 @@ class view
         $file = VIEWS.$view_name.'.php';
         if(file_exists($file))
         {
+
             extract($view_data);
             if($view_name == 'login')
             
@@ -16,6 +17,7 @@ class view
         else
         
         {
+            
             //variable=value
             extract($view_data);
             require (VIEWS.'inc/header.php');

@@ -53,6 +53,7 @@ button {
     display: flex;
     width: 100%;
     align-items: stretch;
+    height: 100vh !important;
 }
 
 /* wrapper */
@@ -60,12 +61,13 @@ button {
 #sidebar {
     min-width: 250px;
     max-width: 250px;
-    height: auto;
+    min-height: 800px !important;
     background-color: var(--navbar);
     padding: 20px 10px;
     color: #fff;
     transition: all 0.3s;
     position: relative;
+
     
 }
 
@@ -163,6 +165,7 @@ a[data-toggle="collapse"] {
 @media (max-width: 768px) {
     #sidebar {
         margin-left: -250px;
+        
     }
 
     #sidebar.active {

@@ -24,7 +24,7 @@
     <div class="first-form">
         <div class="first-title">
             <!-- <span id="title">Book Your Trip Now</span> -->
-            <form class="first" action="/Clients/search/" method="POST">
+            <form class="first" action="/Home/searchU/" method="POST">
                 <div class="mb-3">
                     <label class="form-label">Depart</label>
                     <input type="text" name="gareD" class="form-control" required >

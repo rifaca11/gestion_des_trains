@@ -83,6 +83,35 @@ else{
     }
     }
 
+    public function searchU()
+    {
+        if($_SERVER['REQUEST_METHOD']=='POST') {
+            $db = new Trips();
+            $gareD=$_POST['gareD'];
+            $gareA=$_POST['gareA'];
+            $getTrips = $db->GetGareDispo($gareD,$gareA);
+            
+
+            if($getTrips)
+            {
+                $data['tripsG'] = $db->GetGareDispo($gareD,$gareA);
+                view::loadUser('bookingUser',$data);
+            }
+            else
+            {
+                
+                echo'<script language="javascript">';
+                echo"alert('No Results Found')";
+                echo"</script>";
+                header('location:/home');
+                // view::loadUser('home');
+                
+
+            }
+
+        }
+    }
+
 
 
    
