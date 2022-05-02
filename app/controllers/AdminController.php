@@ -21,7 +21,7 @@ class AdminController
         $db = new Trips();
         // die($id);
         $data['trips'] = $db->GetTrips();
-        $data['train'] = $db->GetTrain();
+        $data['train'] = $db->GetTrains();
         $data['states'] = $db->Getstates();
 
         // print_r($data['trips']);
@@ -110,8 +110,8 @@ class AdminController
         else
         {
             $db = new Trips();
-            $data['update'] = $db->GetTripsToUpdate($id);
-            $data['update'] = $db->GetTrain($id);
+            $data['states'] = $db->GetTripsToUpdate($id);
+            $data['train'] = $db->GetTrains($id);
             view::load('/admin/add',$data);
         }
     }

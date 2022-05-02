@@ -28,7 +28,17 @@ public function GetTrain()
    else return 0;
 
 }
+public function GetTrains()
+{
+   $sql = "SELECT idTr, nomT FROM train";
+   $stmt = $this->connect()->prepare($sql);
+   if($stmt->execute())
+   {
+     return $stmt->fetchAll();
+   }
+   else return 0;
 
+}
 // for booking 
 
 public function GetGare()
