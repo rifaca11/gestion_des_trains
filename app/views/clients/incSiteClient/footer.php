@@ -6,9 +6,9 @@
                <div class="col-xl-6 col-lg-7 col-md-8">
                    <h2 class="mb-0 ">Do you want to know more or just have a question? write to us.</h2>
                </div>
-               <div class="col-md-4 col-lg-5 col-xl-6 py-3 py-md-0 d-md-flex align-items-center justify-content-end">
+               <!-- <div class="col-md-4 col-lg-5 col-xl-6 py-3 py-md-0 d-md-flex align-items-center justify-content-end">
                    <a href="/home/contactUs" class="btn btn-lg" style="background-color:rgb(231, 43, 131);color:white">Contact form</a>
-               </div>
+               </div> -->
            </div>
            <div class="row footer-widget-area">
            
@@ -16,13 +16,13 @@
                    <nav>
                        <ul class="nav flex-column">
                            <li class="nav-item">
-                               <a href="home" class="nav-link ">Home</a>
+                               <a href="/Clients" class="nav-link ">Home</a>
                            </li>
                            <li class="nav-item">
-                               <a href="#!" class="nav-link ">About</a>
+                               <a href="Clients/bookingUs/" class="nav-link ">Trips</a>
                            </li>
                            <li class="nav-item">
-                               <a href="#!" class="nav-link ">Contact</a>
+                               <a href="/Clients/showReserve/" class="nav-link ">List </a>
                            </li>     
                        </ul>
                    </nav>

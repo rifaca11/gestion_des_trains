@@ -21,7 +21,7 @@
                 </div>
             </section>
             <section class="contact-form-wrapper">
-                <form action="/home">
+                <form action="/home/contactUs" method="POST">
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label for="name">YOUR NAME <sup>*</sup></label>
@@ -35,17 +35,17 @@
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label for="subject">SUBJECT <sup>*</sup></label>
-                            <input type="text" class="form-control" id="name" name="subject" placeholder="Reservations">
+                            <input type="text" class="form-control" id="subject" name="subject" placeholder="Reservations">
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="phone">YOUR PHONE NUMBER <sup>*</sup></label>
-                            <input type="text" class="form-control" id="phone" name="phone" placeholder="0624535746">
+                            <label for="tel">YOUR PHONE NUMBER <sup>*</sup></label>
+                            <input type="number" class="form-control" id="tel" name="tel" placeholder="0624535746">
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-12">
-                            <label for="message">HOW CAN WE HELP YOU? <sup>*</sup></label>
-                            <textarea name="message" id="message" class="form-control" rows="7" placeholder="Hi there, I would like to ..."></textarea>
+                            <label for="help">HOW CAN WE HELP YOU? <sup>*</sup></label>
+                            <textarea name="help" id="help" class="form-control" rows="7" placeholder="Hi there, I would like to ..."></textarea>
                         </div>
                     </div>
                     <div class="text-center">

@@ -22,11 +22,29 @@ class HomeController
 
     
     public function contactUs()
-
     {
-        view::loadUser('contact');
-    }
 
+        if($_SERVER['REQUEST_METHOD']=='POST' && !empty($_POST['name'])){
+            $db = new Person();
+
+            $add =[];
+            $add["name"]=$_POST["name"];
+            $add["subject"]=$_POST["subject"];
+            $add["email"]=$_POST["email"];
+            $add["tel"]=$_POST["tel"];
+            $add["help"]=$_POST["help"];
+           
+            //  var_dump($add);
+            $db->Contact($add);
+            header('location:/home');
+
+            
+        }
+        else
+        {
+            view::loadUser('contact');
+        }
+    }
     public function loginC()
 
     {

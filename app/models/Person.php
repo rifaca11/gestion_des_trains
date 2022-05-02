@@ -44,9 +44,22 @@ public function UpdatePerson($update)
    }
   }
   
+  }
 
-  
-  
+  public function Contact($add)
+  {
+    $sql = "INSERT INTO contact (name, subject, email, tel, help)
+      VALUES (?,?,?,?,?)";
+      // use exec() because no results are returned
+      $stmt = $this->connect()->prepare($sql);
+    if($stmt->execute(array($add['name'],$add['subject'],$add['email'],$add['tel'],$add['help'])))
+    {
+        echo "New contact created successfully";
+    }
+    else
+    {
+      return 0;
+    }
   }
 
 

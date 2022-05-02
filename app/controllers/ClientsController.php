@@ -10,11 +10,12 @@ class ClientsController
     //         view::loadUser('loginClient');
     //     }
     // }
+
     public function index()
     {
         // Check if the user is logged in, if not then redirect him to login page
                 view::loadClient('compteClient');
-    
+
     }
 
     public function Booking()
@@ -31,11 +32,12 @@ class ClientsController
         if($_SERVER['REQUEST_METHOD']=='POST' && !empty($_POST['firstname']) && !empty($_POST['lastname']) && !empty($_POST['email']) && !empty($_POST['tele']) && !empty($_POST['city']) && !empty($_POST['dateN'])){
             $db = new Person();
             // echo $_SESSION["idPCl"];
-
             $update =[];
             $update["idP"]=$_SESSION["idPCl"];
             $update["firstname"]=$_POST["firstname"];
             $update["lastname"]=$_POST["lastname"];
+            $_SESSION["firstnameCl"]=$update["firstname"];
+            $_SESSION["lastnameCl"]=$update["lastname"]; 
             $update["email"]=$_POST["email"];
             $update["tele"]=$_POST["tele"];
             $update["city"]=$_POST["city"];
@@ -51,7 +53,6 @@ class ClientsController
 
                 view::loadClient('profile',$data);
             }
-            
         }
             else
             {
@@ -60,30 +61,36 @@ class ClientsController
                 view::loadClient('profile',$data);
             }
     }
-     
+
     public function bookingUs($id=-1)
 
     {
         $db = new Trips();
         if($_SERVER['REQUEST_METHOD']=='POST' && !empty($_POST['day']))
         {
-        
-        $ajout =[];
-        $ajout["day"]=$_POST["day"];
-        $ajout["idP"]=$_SESSION["idPCl"];
-        $ajout["idT"]=$id;
-        $data['tripsG'] = $db->GetGare();
-        if($id != -1){
-        $db->AddReservation($ajout);
-        header("location:/Clients/bookingUs");
-        exit();
-        } 
-        view::loadClient('booking',$data);
-    }
+
+            $ajout =[];
+            $ajout["day"]=$_POST["day"];
+            $ajout["idP"]=$_SESSION["idPCl"];
+            $ajout["idT"]=$id;
+            // $ajout["idTr"]=$idTr;
+            $data['tripsG'] = $db->GetGare();
+            
+            if($id != -1)
+            {
+                $db->AddReservation($ajout);
+                // $db->GetTrain();
+                $db->NbrPlace();
+               
+                header("location:/Clients/bookingUs");
+                exit();
+            } 
+            view::loadClient('booking',$data);
+         }
 
     else{
-        $data['tripsG'] = $db->GetGare();
-        view::loadClient('booking',$data);
+            $data['tripsG'] = $db->GetGare();
+            view::loadClient('booking',$data);
         }
     } 
 

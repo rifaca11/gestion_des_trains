@@ -5,7 +5,7 @@ class Trips extends DB
 
  public function GetTrips()
  {
-    $sql = "SELECT T.idT,T.gareD,T.gareA,T.HoursD,T.HoursA,T.price,Tr.nomT,S.status FROM trips T, train Tr, states S where Tr.idTr=T.idTr and S.idS=T.idS";
+    $sql = "SELECT T.idT,T.gareD,T.gareA,T.HoursD,T.HoursA,T.price,Tr.nomT,Tr.nbrPlace,Tr.nomT,S.status FROM trips T, train Tr, states S where Tr.idTr=T.idTr and S.idS=T.idS";
     $stmt = $this->connect()->prepare($sql);
     if($stmt->execute())
     {
@@ -19,7 +19,7 @@ class Trips extends DB
 
 public function GetTrain()
 {
-   $sql = "SELECT idTr,nomT from train";
+   $sql = "SELECT T.idTr from train Tr, trips T where Tr.idTr=T.idTr";
    $stmt = $this->connect()->prepare($sql);
    if($stmt->execute())
    {
@@ -33,7 +33,7 @@ public function GetTrain()
 
 public function GetGare()
 {
-   $sql = "SELECT idT, gareD ,gareA, HoursD, HoursA, price,idS from trips where idS in (select idS from states where status='valid') ";
+   $sql = "SELECT T.idT, T.gareD ,T.gareA, T.HoursD, T.HoursA, T.price, Tr.nbrPlace,Tr.nomT, T.idS from trips T, Train Tr WHERE T.idTr=Tr.idTr AND T.idS in (select idS from states where status='valid') ";
    $stmt = $this->connect()->prepare($sql);
    if($stmt->execute())
    {
@@ -57,7 +57,7 @@ public function GetStates()
 
 public function GetGareDispo($gareD,$gareA)
 {
-      $sql ="SELECT idT, gareD ,gareA, HoursD, HoursA, price,idS FROM trips WHERE gareD='$gareD' and gareA='$gareA' and idS in (select idS from states where status='valid') ";
+      $sql ="SELECT T.idT, T.gareD ,T.gareA, T.HoursD, T.HoursA, T.price ,Tr.nbrPlace,Tr.nomT ,T.idS FROM trips T, train Tr WHERE T.idTr=Tr.idTr and T.gareD='$gareD' and T.gareA='$gareA' and T.idS in (select idS from states where status='valid') ";
       $stmt = $this->connect()->prepare($sql);
       if($stmt->execute())
    {
@@ -155,7 +155,7 @@ public function GetClients()
 
 public function GetReservation($id)
 {
-   $sql = "SELECT R.idRes,R.status,R.day,P.idP,P.firstname,P.email,T.idT,T.gareD,T.gareA,T.HoursD,T.HoursA,T.price FROM reservation R,person P,trips T WHERE P.idP=R.idP and T.idT=R.idT and R.idP=$id and R.status='valid'";
+   $sql = "SELECT R.idRes,R.status,R.day,P.idP,P.firstname,P.email,T.idT,T.gareD,T.gareA,T.HoursD,T.HoursA,T.price,Tr.nbrPlace FROM reservation R,person P,trips T, train Tr WHERE P.idP=R.idP and T.idT=R.idT and T.idTr=Tr.idTr and R.idP=$id and R.status='valid'";
    $stmt = $this->connect()->prepare($sql);
   if($stmt->execute())
    {
@@ -178,6 +178,8 @@ public function GetReservationA()
 }
 
 
+
+
 public function AddReservation($ajout)
 {
 
@@ -193,6 +195,20 @@ else
 {
   return 0;
 }
+}
+
+public function NbrPlace()
+{
+  $sql="UPDATE trips T,train Tr SET Tr.nbrPlace= Tr.nbrPlace-1 WHERE T.idTr=Tr.idTr";
+  $stmt = $this->connect()->prepare($sql);
+  if($stmt->execute()) 
+  {
+        return $stmt->fetch();
+  }
+  else
+  {
+    return 0;
+  }
 }
 
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 27, 2022 at 05:09 PM
+-- Generation Time: May 02, 2022 at 09:30 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -20,6 +20,29 @@ SET time_zone = "+00:00";
 --
 -- Database: `gestion_trains`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contact`
+--
+
+CREATE TABLE `contact` (
+  `idC` int(11) NOT NULL,
+  `name` varchar(200) NOT NULL,
+  `subject` varchar(200) NOT NULL,
+  `email` varchar(200) NOT NULL,
+  `tel` int(16) NOT NULL,
+  `help` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `contact`
+--
+
+INSERT INTO `contact` (`idC`, `name`, `subject`, `email`, `tel`, `help`) VALUES
+(1, 'saida ', 'reclamation', 'saida@gmail.com', 2147483647, 'hi'),
+(3, 'test', 'remerciements', 'test@test.com', 67352427, 'tnks');
 
 -- --------------------------------------------------------
 
@@ -45,8 +68,9 @@ CREATE TABLE `person` (
 
 INSERT INTO `person` (`idP`, `firstname`, `lastname`, `email`, `tele`, `city`, `dateN`, `password`, `role`) VALUES
 (2, 'Sharifa', 'Koala', 'charifah1112@gmail.com', 624535746, 'nador', '2000-12-11', '12345', 1),
-(14, 'Hichamm', 'El Kamouni', 'hicham@gmail.com', 87655456, 'safi', '1997-02-27', '1234', 2),
-(20, 'haytham', 'haoudi', 'haytham@gmail.com', 62524353, '', '0000-00-00', '', 3);
+(14, 'Hicham', 'El Kamouni', 'hicham@gmail.com', 87655456, 'safi', '1997-02-27', '1234', 2),
+(20, 'haytham', 'haoudi', 'haytham@gmail.com', 62524353, '', '0000-00-00', '', 3),
+(21, 'laila', 'lahmiri', 'laila@gmail.com', 97261614, '', '0000-00-00', '', 3);
 
 -- --------------------------------------------------------
 
@@ -69,7 +93,13 @@ CREATE TABLE `reservation` (
 
 INSERT INTO `reservation` (`idRes`, `status`, `day`, `create_at`, `idP`, `idT`) VALUES
 (20, 'invalid', '2022-04-27', '2022-04-27 11:48:15', 14, 1),
-(21, 'valid', '2022-04-27', '2022-04-27 14:44:46', 14, 9);
+(21, 'valid', '2022-04-27', '2022-04-27 14:44:46', 14, 9),
+(22, 'invalid', '2022-05-02', '2022-05-02 14:55:22', 14, 1),
+(23, 'valid', '2022-05-02', '2022-05-02 15:55:11', 14, 4),
+(24, 'invalid', '2022-05-03', '2022-05-02 16:00:56', 14, 6),
+(25, 'invalid', '2022-05-03', '2022-05-02 16:04:16', 14, 6),
+(26, 'valid', '2022-05-02', '2022-05-02 16:11:22', 14, 6),
+(27, 'valid', '2022-05-18', '2022-05-02 16:12:22', 14, 1);
 
 -- --------------------------------------------------------
 
@@ -129,8 +159,8 @@ CREATE TABLE `train` (
 --
 
 INSERT INTO `train` (`idTr`, `nomT`, `nbrPlace`, `class`, `numero`) VALUES
-(1, 'train1', 100, 'c1', 12345),
-(2, 'train2', 200, 'c2', 123456);
+(1, 'train1', 91, 'c1', 12345),
+(2, 'train2', 100, 'c2', 123456);
 
 -- --------------------------------------------------------
 
@@ -166,6 +196,12 @@ INSERT INTO `trips` (`idT`, `gareD`, `gareA`, `HoursD`, `HoursA`, `price`, `idTr
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `contact`
+--
+ALTER TABLE `contact`
+  ADD PRIMARY KEY (`idC`);
 
 --
 -- Indexes for table `person`
@@ -213,16 +249,22 @@ ALTER TABLE `trips`
 --
 
 --
+-- AUTO_INCREMENT for table `contact`
+--
+ALTER TABLE `contact`
+  MODIFY `idC` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `person`
 --
 ALTER TABLE `person`
-  MODIFY `idP` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `idP` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `idRes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `idRes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `role`

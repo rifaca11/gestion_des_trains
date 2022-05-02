@@ -6,7 +6,7 @@
                 <div class="col-md-6">
                     <h1>Welcome <b style="color:rgb(231, 43, 131)"><?php echo $_SESSION['firstnameCl'].'  '. $_SESSION['lastnameCl']?></b> to our website for booking train</h1>
                     <p class="text-dark p-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Alias unde, ipsam vero similique neque commodi. </p>
-                    <button class="btn btn-primary mb-4">Book Now</button>
+                    <a href="/Clients/bookingUs"><button class="btn btn-primary mb-4">Book Now</button></a>
                 </div>
                 <div class="col-md-6">
                     <img src="/assets/img/profil.svg" alt="app" width="388px" class="img-fluid">
