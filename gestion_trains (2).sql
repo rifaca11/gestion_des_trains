@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 02, 2022 at 09:30 PM
+-- Generation Time: May 03, 2022 at 02:16 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -67,8 +67,8 @@ CREATE TABLE `person` (
 --
 
 INSERT INTO `person` (`idP`, `firstname`, `lastname`, `email`, `tele`, `city`, `dateN`, `password`, `role`) VALUES
-(2, 'Sharifa', 'Koala', 'charifah1112@gmail.com', 624535746, 'nador', '2000-12-11', '12345', 1),
-(14, 'Hicham', 'El Kamouni', 'hicham@gmail.com', 87655456, 'safi', '1997-02-27', '1234', 2),
+(2, 'Charifa', 'Koala', 'charifah1112@gmail.com', 624535746, 'nador', '2000-12-11', '12345', 1),
+(14, 'Hicham', 'EL', 'hicham@gmail.com', 87655456, 'safi', '1997-02-27', '1234', 2),
 (20, 'haytham', 'haoudi', 'haytham@gmail.com', 62524353, '', '0000-00-00', '', 3),
 (21, 'laila', 'lahmiri', 'laila@gmail.com', 97261614, '', '0000-00-00', '', 3);
 
@@ -190,8 +190,8 @@ INSERT INTO `trips` (`idT`, `gareD`, `gareA`, `HoursD`, `HoursA`, `price`, `idTr
 (5, 'fes', 'safi', '13:42:00', '13:42:00', 546, 1, 2),
 (6, 'agadir', 'nador', '00:00:00', '18:00:00', 1000, 2, 1),
 (7, 'tanger', 'nador', '11:29:00', '03:29:00', 123, 1, 2),
-(8, 'fes', 'kech', '13:45:00', '14:45:00', 234, 2, 2),
-(9, 'taourirt', 'casa', '14:40:00', '15:39:00', 234, 1, 1);
+(9, 'taourirt', 'casa', '14:40:00', '15:39:00', 234, 1, 1),
+(10, 'fes', 'kech', '20:41:00', '22:41:00', 430, 1, 2);
 
 --
 -- Indexes for dumped tables
@@ -288,7 +288,7 @@ ALTER TABLE `train`
 -- AUTO_INCREMENT for table `trips`
 --
 ALTER TABLE `trips`
-  MODIFY `idT` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `idT` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Constraints for dumped tables
