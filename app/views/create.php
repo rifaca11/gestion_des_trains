@@ -204,7 +204,7 @@
                 <div class="form-group">
                 <select  class="form-control" name="idTr" id="exempletrain">
                 <option>Choose a train </option>
-                <?php foreach($train as $rowStates){ ?>
+                <?php foreach($train as $rowTrain){ ?>
                 <?php 
                 if($row['nomT'] === $rowTrain['nomT']) 
                 {
