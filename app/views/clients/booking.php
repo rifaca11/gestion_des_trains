@@ -39,7 +39,7 @@
                 <td> <?php echo $rowG['HoursD']; ?> </td>
                 <td> <?php echo $rowG['HoursA']; ?> </td>
                 <td> <?php echo $rowG['price']; ?> </td>
-                <td> <?php echo $rowG['nbrPlace']; ?> </td>
+                <td> <?php echo $rowG['place']; ?> </td>
                 <td> <?php echo $rowG['nomT']; ?> </td>
                 <td>
                 <a href="" name="reserve" class="edit" title="Reserve" data-toggle="modal" data-target="<?php echo '#reserve'.$rowG['idT'] ?>"  data-whatever="@mdo"><button class="btn btn-primary" > Reserve</button></a>
@@ -62,14 +62,14 @@
             <form action="<?php echo '/Clients/bookingUs/'.$rowG['idT'] ?>" method="POST">
                 <div class="form-group">
                 <label for="exampleHoursD">Day</label>
-                <input type="date" class="form-control" name="day" id="exampleHoursD" value="<?php echo date("Y-%-%") ?>" >
+                <input type="date" class="form-control" min="<?php echo date('Y-m-d'); ?>" name="day" id="exampleHoursD" value="<?php echo date("Y-%-%") ?>" >
                 </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary"  data-dismiss="modal">Close</button>
                 <button type="submit" class="btn text-light"  style="background-color:rgb(146, 25, 120)">Reserve</button>
             </div>
             </div>
-</form>
+            </form>
 </tr> 
 <?php } ?> 
                 </tbody>

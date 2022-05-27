@@ -20,9 +20,6 @@ class App
        $this->preapareURL();
        $this-> render();
 
-
-
-
     }
 // extract controller , method (action) and parameters 
 // @return void
@@ -42,6 +39,8 @@ class App
                     //define action (method)
                     $this->action = isset($url[1]) ?$url[1] : "index";
                     // echo $this->action.'<br>';
+
+                    
                     //define parameters
                     unset($url[0],$url[1]);
                     $this->params = !empty($url) ? array_values($url):[];

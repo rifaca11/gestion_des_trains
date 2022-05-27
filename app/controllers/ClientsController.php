@@ -15,7 +15,6 @@ class ClientsController
     {
         // Check if the user is logged in, if not then redirect him to login page
                 view::loadClient('compteClient');
-
     }
 
     public function Booking()
@@ -45,7 +44,6 @@ class ClientsController
     
             $update["password"]=trim($_POST["password"]);
          
-            
             // print_r($update);
             if ($db->UpdatePerson($update)) {
                 $db = new Person();
@@ -80,7 +78,8 @@ class ClientsController
             {
                 $db->AddReservation($ajout);
                 // $db->GetTrain();
-                $db->NbrPlace();
+                // $db->getPlaces($idTr);
+                $db->NbrPlace($id);
                
                 header("location:/Clients/bookingUs");
                 exit();
@@ -103,6 +102,7 @@ class ClientsController
         $data['tripsR'] = $db->GetReservation($_SESSION['idPCl']);
 
         if($id != -1){
+            
         $db->AddReservation($id,$_SESSION['idPCl'],$_POST['day']);
         header("location:/Clients/showReserve");
         exit();
@@ -130,11 +130,9 @@ class ClientsController
                   // print_r($now) ;
                   // exit;
 
-
         $intvl = $time_reserve->diff($now);
         $timeLeft= $intvl->y * 365 * 24 * 60 + $intvl->m * 30 * 24 * 60 + $intvl->d * 24 * 60 + $intvl->h * 60 + $intvl->i;
        
-    
         if ($timeLeft>60)
         {
             $db->Cancel($id);

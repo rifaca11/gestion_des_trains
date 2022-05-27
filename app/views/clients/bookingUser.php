@@ -39,7 +39,7 @@
                 <td> <?php echo $rowG['HoursD']; ?> </td>
                 <td> <?php echo $rowG['HoursA']; ?> </td>
                 <td> <?php echo $rowG['price']; ?> </td>
-                <td> <?php echo $rowG['nbrPlace']; ?> </td>
+                <td> <?php echo $rowG['place']; ?> </td>
                 <td> <?php echo $rowG['nomT']; ?> </td>
                 <td>
                 <a href="" name="reserve" class="edit" title="Reserve" data-toggle="modal" data-target="<?php echo '#reserve'.$rowG['idT'] ?>"  data-whatever="@mdo"><button class="btn btn-primary"> Reserve</button></a>

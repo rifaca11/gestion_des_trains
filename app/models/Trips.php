@@ -5,16 +5,14 @@ class Trips extends DB
 
  public function GetTrips()
  {
-    $sql = "SELECT T.idT,T.gareD,T.gareA,T.HoursD,T.HoursA,T.price,Tr.nomT,Tr.nbrPlace,Tr.nomT,S.status FROM trips T, train Tr, states S where Tr.idTr=T.idTr and S.idS=T.idS";
+    $sql = "SELECT T.idT,T.gareD,T.gareA,T.HoursD,T.HoursA,T.price,Tr.nomT,T.place,Tr.nomT,S.status FROM trips T, train Tr, states S where Tr.idTr=T.idTr and S.idS=T.idS";
     $stmt = $this->connect()->prepare($sql);
     if($stmt->execute())
     {
       return $stmt->fetchAll();
     }
     else return 0; 
-
-
-}
+ }
 
 
 public function GetTrain()
@@ -28,6 +26,7 @@ public function GetTrain()
    else return 0;
 
 }
+
 public function GetTrains()
 {
    $sql = "SELECT idTr, nomT FROM train";
@@ -43,14 +42,13 @@ public function GetTrains()
 
 public function GetGare()
 {
-   $sql = "SELECT T.idT, T.gareD ,T.gareA, T.HoursD, T.HoursA, T.price, Tr.nbrPlace,Tr.nomT, T.idS from trips T, Train Tr WHERE T.idTr=Tr.idTr AND T.idS in (select idS from states where status='valid') ";
+   $sql = "SELECT T.idT, T.gareD ,T.gareA, T.HoursD, Tr.idTr,T.HoursA, T.price, T.place,Tr.nomT, T.idS from trips T, Train Tr WHERE T.idTr=Tr.idTr AND T.place>0 AND T.idS in (select idS from states where status='valid') ";
    $stmt = $this->connect()->prepare($sql);
    if($stmt->execute())
    {
      return $stmt->fetchAll();
    }
    else return 0;
-
 }
 
 public function GetStates()
@@ -67,14 +65,14 @@ public function GetStates()
 
 public function GetGareDispo($gareD,$gareA)
 {
-      $sql ="SELECT T.idT, T.gareD ,T.gareA, T.HoursD, T.HoursA, T.price ,Tr.nbrPlace,Tr.nomT ,T.idS FROM trips T, train Tr WHERE T.idTr=Tr.idTr and T.gareD='$gareD' and T.gareA='$gareA' and T.idS in (select idS from states where status='valid') ";
-      $stmt = $this->connect()->prepare($sql);
-      if($stmt->execute())
+    $sql ="SELECT T.idT, T.gareD ,T.gareA, T.HoursD, T.HoursA, T.price ,T.place,Tr.nomT ,T.idS FROM trips T, train Tr WHERE T.idTr=Tr.idTr and T.gareD='$gareD' and T.gareA='$gareA' and T.idS in (select idS from states where status='valid') ";
+    $stmt = $this->connect()->prepare($sql);
+    if($stmt->execute())
    {
      return $stmt->fetchAll();
    }
       else return 0;
-  }
+}
 
 
 
@@ -149,7 +147,6 @@ public function UpdateTrips($update)
  }
 
 
-
 public function GetClients()
 {
    $sql = "SELECT * FROM person where role=2";
@@ -165,7 +162,7 @@ public function GetClients()
 
 public function GetReservation($id)
 {
-   $sql = "SELECT R.idRes,R.status,R.day,P.idP,P.firstname,P.email,T.idT,T.gareD,T.gareA,T.HoursD,T.HoursA,T.price,Tr.nbrPlace FROM reservation R,person P,trips T, train Tr WHERE P.idP=R.idP and T.idT=R.idT and T.idTr=Tr.idTr and R.idP=$id and R.status='valid'";
+   $sql = "SELECT R.idRes,R.status,R.day,P.idP,P.firstname,P.email,T.idT,T.gareD,T.gareA,T.HoursD,T.HoursA,T.price,T.place FROM reservation R,person P,trips T, train Tr WHERE P.idP=R.idP and T.idT=R.idT and T.idTr=Tr.idTr and R.idP=$id and R.status='valid' and T.place>0";
    $stmt = $this->connect()->prepare($sql);
   if($stmt->execute())
    {
@@ -174,6 +171,7 @@ public function GetReservation($id)
    else return 0;
 
 }
+
 
 public function GetReservationA()
 {
@@ -188,37 +186,47 @@ public function GetReservationA()
 }
 
 
+function getPlaces($idTr){
+   $sql="SELECT nbrPlace FROM train WHERE idTr = $idTr";
+   $stmt = $this->connect()->prepare($sql);
+  if($stmt->execute())
+   {
+     return $stmt->fetch();
+   }
+   else return 0;
+
+}
 
 
 public function AddReservation($ajout)
 {
 
-  $sql = "INSERT INTO reservation (idT, idP,day)
-  VALUES (?,?,?)";
-  // use exec() because no results are returned
-  $stmt = $this->connect()->prepare($sql);
-if($stmt->execute(array($ajout['idT'],$ajout['idP'],$ajout['day']))) 
-{
-    echo "New record created successfully";
-}
-else
-{
-  return 0;
-}
+    $sql = "INSERT INTO reservation (idT, idP,day)
+    VALUES (?,?,?)";
+    // use exec() because no results are returned
+    $stmt = $this->connect()->prepare($sql);
+    if($stmt->execute(array($ajout['idT'],$ajout['idP'],$ajout['day']))) 
+    {
+        echo "New record created successfully";
+    }
+    else
+    {
+      return 0;
+    }
 }
 
-public function NbrPlace()
+public function NbrPlace($id)
 {
-  $sql="UPDATE trips T,train Tr SET Tr.nbrPlace= Tr.nbrPlace-1 WHERE T.idTr=Tr.idTr";
-  $stmt = $this->connect()->prepare($sql);
-  if($stmt->execute()) 
-  {
-        return $stmt->fetch();
-  }
-  else
-  {
-    return 0;
-  }
+    $sql="UPDATE trips T,train Tr SET T.place= T.place-1 WHERE T.idTr=Tr.idTr and T.idT=$id and T.place>0";
+    $stmt = $this->connect()->prepare($sql);
+    if($stmt->execute()) 
+    {
+          return $stmt->fetch();
+    }
+    else
+    {
+      return 0;
+    }
 }
 
 
@@ -229,14 +237,15 @@ public function AddUser($ajout)
   VALUES (?,?,?,?,?)";
   // use exec() because no results are returned
   $stmt = $this->connect()->prepare($sql);
-if($stmt->execute(array($ajout['firstname'],$ajout['lastname'],$ajout['email'],$ajout['tele'],3))) 
-{
-    echo "New record created successfully";
-}
-else
-{
-  return 0;
-}
+  if($stmt->execute(array($ajout['firstname'],$ajout['lastname'],$ajout['email'],$ajout['tele'],3))) 
+  {
+     echo "New record created successfully";
+  }
+  else
+  {
+    return 0;
+  }
+
 }
 
 
@@ -253,8 +262,6 @@ public function getLastUser()
     return 0;
   }
 }
-
-
 
 
 public function Cancel($id)
@@ -284,7 +291,17 @@ public function Cancel($id)
    else return 0;
   }
 
-  
+  // public function ReservePlaceDispo($id)
+  // {
+  //  $sql = "SELECT place from trips where place<0 and resr";
+  //  $stmt = $this->connect()->prepare($sql);
+  //  if($stmt->execute())
+  //  {
+  //    return $stmt->fetch();
+  //  }
+  //  else return 0;
+  // }
+
 
   // public function getPlace()
   // { $sql = "SELECT nbrPlace from train where idTr=$id";
@@ -297,14 +314,7 @@ public function Cancel($id)
   //  }
 
 
- 
-
 }
-
-
-
-
-
 
 
 //   public function GetTripsToDelete($id)
